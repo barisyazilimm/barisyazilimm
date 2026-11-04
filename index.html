@@ -24,16 +24,9 @@
   
   /* DEV ARKA PLAN YAZISI */
   .bg-text {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20vw;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.02);
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: -1;
-    letter-spacing: -1vw;
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 22vw; font-weight: 900; color: rgba(255, 255, 255, 0.015);
+    white-space: nowrap; pointer-events: none; z-index: -1; letter-spacing: -1vw;
   }
 
   /* HAREKETLİ ARKA PLAN IZGARASI */
@@ -53,10 +46,15 @@
   /* NAV */
   nav{
     position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
-    padding:1.5rem 6%;background:rgba(5,8,15,.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
+    padding:1.5rem 6%;background:rgba(5,8,15,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
   }
-  .logo{font-size:1.6rem;font-weight:900;letter-spacing:-1px}
-  .logo span{color:var(--accent);text-shadow:0 0 15px rgba(59,130,246,0.8)}
+  .logo{font-size:1.7rem;font-weight:900;letter-spacing:-1px;display:flex;align-items:center;gap:10px;}
+  .logo span{color:var(--accent);text-shadow:0 0 20px rgba(59,130,246,1)}
+  .logo-icon{
+    width:35px;height:35px;background:linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;
+    box-shadow: 0 0 20px rgba(59,130,246,0.6);
+  }
   nav ul{display:flex;gap:2.5rem;list-style:none;align-items:center}
   nav a{color:var(--muted);text-decoration:none;font-size:1rem;font-weight:600;transition:.3s}
   nav a:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,0.5)}
@@ -81,14 +79,43 @@
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
   
   .hero h1{
-    font-size:clamp(3.5rem,8vw,7rem);font-weight:900;letter-spacing:-4px;line-height:1;max-width:1200px;
-    text-shadow:0 20px 50px rgba(0,0,0,0.8);
+    font-size:clamp(3.5rem,8vw,7rem);font-weight:900;letter-spacing:-4px;line-height:1.05;max-width:1200px;
+    text-shadow:0 20px 50px rgba(0,0,0,0.8); margin-bottom: 2rem;
   }
   .hero h1 .grad{
     background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
     filter:drop-shadow(0 0 30px rgba(59,130,246,0.6));
   }
-  .hero p{font-size:clamp(1.2rem,2vw,1.4rem);color:var(--muted);max-width:700px;margin:2.5rem 0 4rem;line-height:1.8;}
+  
+  /* SİBER TERMİNAL EFEKTİ */
+  .terminal-box {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 3.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(59,130,246,0.1) inset;
+    position: relative;
+  }
+  .terminal-header {
+    display: flex; gap: 8px; margin-bottom: 1rem;
+  }
+  .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .t-red { background: #ef4444; }
+  .t-yellow { background: #facc15; }
+  .t-green { background: #22c55e; }
+  .terminal-text { color: #22c55e; font-size: 1rem; font-weight: bold; }
+  .terminal-text span { color: #fff; }
+  .terminal-cursor {
+    display: inline-block; width: 8px; height: 15px; background: #22c55e;
+    animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 5px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
   .btn{
     display:inline-block;padding:1.2rem 3.5rem;border-radius:12px;font-weight:900;text-decoration:none;transition:.3s;
     font-size:1.1rem;text-transform:uppercase;letter-spacing:2px;
@@ -143,80 +170,36 @@
   .card h3{font-size:1.5rem;margin-bottom:1rem;letter-spacing:-.5px;font-weight:900;color:#fff}
   .card p{color:var(--muted);font-size:1.05rem;line-height:1.8}
 
-  /* PORTFOLYO (PROJELER) */
-  .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:3rem}
-  .portfolio-card{
-    background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden;position:relative;
-    transition:.4s;box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  /* PAKETLER / FİYATLANDIRMA */
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .price-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 3rem 2rem;
+    text-align: center; transition: .4s; position: relative; backdrop-filter: blur(10px);
   }
-  .portfolio-card:hover{transform:translateY(-10px);border-color:var(--accent2);box-shadow:0 20px 50px rgba(0,0,0,0.6)}
-  .portfolio-img{
-    height:250px;background:linear-gradient(45deg, #0f172a, #1e293b);display:flex;align-items:center;justify-content:center;
-    font-size:3rem;color:rgba(255,255,255,0.1);position:relative;
+  .price-card:hover { transform: translateY(-10px); border-color: var(--accent2); }
+  .price-card.popular { border-color: var(--accent); box-shadow: 0 0 30px rgba(59,130,246,0.2); }
+  .price-card.popular::before {
+    content: 'EN ÇOK TERCİH EDİLEN'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 900; padding: 0.5rem 1rem; border-radius: 20px;
   }
-  .portfolio-card:hover .portfolio-img{background:linear-gradient(45deg, #1e293b, #0f172a)}
-  .portfolio-info{padding:2.5rem}
-  .portfolio-info h3{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:.5rem}
-  .portfolio-info p{color:var(--muted);font-size:1rem;margin-bottom:1.5rem}
-  .portfolio-tags{display:flex;gap:0.8rem;flex-wrap:wrap}
-  .portfolio-tags span{
-    padding:.4rem 1rem;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);
-    border-radius:6px;font-size:.8rem;font-weight:700;color:var(--accent);
-  }
-
-  /* SAYAÇLI İSTATİSTİKLER */
-  .stats{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;text-align:center;background:var(--card);
-    backdrop-filter: blur(20px);border:1px solid var(--border);border-radius:30px;padding:5rem 2rem;box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-  }
-  .stats .num{
-    font-size:4.5rem;font-weight:900;letter-spacing:-3px;background:linear-gradient(135deg,#fff,var(--accent2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 25px rgba(6,182,212,0.5));
-  }
-  .stats .lbl{color:var(--muted);font-size:1rem;margin-top:1rem;font-weight:800;text-transform:uppercase;letter-spacing:2px}
-
-  /* SÜREÇ */
-  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2.5rem}
-  .step{
-    padding:3rem;background:var(--card);backdrop-filter: blur(16px);border-radius:24px;border:1px solid var(--border);
-    transition:.3s;box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-  }
-  .step:hover{border-color:var(--accent);transform:translateY(-10px);box-shadow:0 20px 50px rgba(59,130,246,0.2)}
-  .step .no{font-size:3rem;font-weight:900;color:rgba(59,130,246,0.1);letter-spacing:3px;margin-bottom:1.5rem;-webkit-text-stroke:1px var(--accent);}
-  .step h3{font-size:1.4rem;margin-bottom:1rem;letter-spacing:-.5px;font-weight:900;color:#fff}
-  .step p{color:var(--muted);font-size:1rem}
-
-  /* MÜŞTERİ YORUMLARI */
-  .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2.5rem}
-  .testimonial{
-    background:var(--card);backdrop-filter: blur(16px);border:1px solid var(--border);border-radius:24px;padding:3rem;
-    position:relative;box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-  }
-  .testimonial::before{
-    content:'"';position:absolute;top:10px;right:20px;font-size:6rem;color:rgba(59,130,246,0.1);font-family:serif;line-height:1;
-  }
-  .testimonial p{color:var(--text);font-size:1.1rem;font-style:italic;margin-bottom:2rem;position:relative;z-index:1}
-  .testimonial .author{display:flex;align-items:center;gap:1rem}
-  .testimonial .avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff}
-  .testimonial .info h4{color:#fff;font-size:1.1rem;font-weight:800;margin-bottom:.2rem}
-  .testimonial .info span{color:var(--muted);font-size:.9rem}
-
+  .price-card h3 { font-size: 1.5rem; color: #fff; margin-bottom: 1rem; }
+  .price-card .price { font-size: 3rem; font-weight: 900; color: var(--accent2); margin-bottom: 2rem; }
+  .price-card .price span { font-size: 1rem; color: var(--muted); font-weight: 500; }
+  .price-features { list-style: none; text-align: left; margin-bottom: 3rem; }
+  .price-features li { padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+  .price-features li::before { content: '✓'; color: var(--accent2); font-weight: bold; }
+  
   /* İLETİŞİM */
   .contact{
     background:linear-gradient(160deg,rgba(13,19,31,0.95),rgba(9,13,22,0.95));backdrop-filter: blur(30px);
     border:1px solid var(--border);border-radius:40px;padding:7rem 4rem;text-align:center;max-width:1000px;margin:0 auto;
     position:relative;overflow:hidden;box-shadow: 0 30px 80px rgba(0,0,0,0.6);
   }
-  .contact::before{
-    content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;
-    background:radial-gradient(circle at top, rgba(59,130,246,0.3), transparent 70%);pointer-events:none;
-  }
   .contact h2{font-size:clamp(2.5rem,5vw,4rem);margin-bottom:1.5rem;letter-spacing:-2px;font-weight:900;color:#fff}
   .contact p{color:var(--muted);margin-bottom:4rem;max-width:600px;margin-left:auto;margin-right:auto;font-size:1.2rem}
 
   /* FOOTER */
   footer{text-align:center;padding:5rem 6%;border-top:1px solid var(--border);color:var(--muted);font-size:1rem;margin-top:6rem;background:rgba(5,8,15,0.9);position:relative;z-index:1;}
-  footer .logo{font-size:1.8rem;margin-bottom:1rem}
 </style>
 </head>
 <body>
@@ -225,10 +208,13 @@
 <div id="mouse-glow"></div>
 
 <nav>
-  <div class="logo">Barış<span>.</span>Yazılım</div>
+  <div class="logo">
+    <div class="logo-icon">{ }</div>
+    Barış<span>.</span>Yazılım
+  </div>
   <ul>
     <li><a href="#hizmetler">Hizmetler</a></li>
-    <li><a href="#portfolyo">Projeler</a></li>
+    <li><a href="#paketler">Paketler</a></li>
     <li><a href="#surec">Süreç</a></li>
     <li><a href="#iletisim" class="nav-cta">Teklif Al</a></li>
   </ul>
@@ -237,7 +223,21 @@
 <header class="hero">
   <span class="badge"><span class="dot"></span> Siber Güvenlik & Yazılım Ajansı</span>
   <h1>Fikrinizi <span class="grad">çalışan yazılıma</span> dönüştürüyoruz</h1>
-  <p>Web, mobil ve kurumsal yazılım geliştirme. Siber güvenlik odaklı, modern teknolojilerle hızlı ve ölçeklenebilir çözümler.</p>
+  
+  <!-- SİBER TERMİNAL -->
+  <div class="terminal-box">
+    <div class="terminal-header">
+      <div class="terminal-dot t-red"></div>
+      <div class="terminal-dot t-yellow"></div>
+      <div class="terminal-dot t-green"></div>
+    </div>
+    <div class="terminal-text">
+      > baris_yazilim --init<br>
+      <span>[OK] Sistemler hazır. Siber güvenlik kalkanları aktif.</span><br>
+      > Projenizi inşa etmeye hazırız<span class="terminal-cursor"></span>
+    </div>
+  </div>
+
   <a href="#iletisim" class="btn btn-primary">Projenizi Konuşalım</a>
 </header>
 
@@ -287,52 +287,48 @@
   </div>
 </section>
 
-<!-- PORTFOLYO -->
-<section id="portfolyo">
+<!-- YENİ: PAKETLER -->
+<section id="paketler">
   <div class="sec-title">
-    <h2>Öne Çıkan Projeler</h2>
-    <p>Geliştirdiğimiz bazı çözümler</p>
+    <h2>Çalışma Paketlerimiz</h2>
+    <p>İhtiyacınıza en uygun modeli seçin</p>
   </div>
-  <div class="portfolio-grid">
-    <div class="portfolio-card">
-      <div class="portfolio-img">🛒</div>
-      <div class="portfolio-info">
-        <h3>E-Ticaret Platformu</h3>
-        <p>Yüksek trafikli, ölçeklenebilir ve güvenli ödeme altyapısına sahip modern e-ticaret sistemi.</p>
-        <div class="portfolio-tags">
-          <span>Next.js</span><span>Node.js</span><span>MongoDB</span>
-        </div>
-      </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Başlangıç</h3>
+      <div class="price">₺15.000<span>'den başlayan</span></div>
+      <ul class="price-features">
+        <li>Kurumsal Tanıtım Sitesi</li>
+        <li>Mobil Uyumlu Tasarım</li>
+        <li>Temel SEO Ayarları</li>
+        <li>3 Ay Teknik Destek</li>
+      </ul>
+      <a href="#iletisim" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 0.9rem;">Teklif Al</a>
     </div>
-    <div class="portfolio-card">
-      <div class="portfolio-img">🏦</div>
-      <div class="portfolio-info">
-        <h3>Kurumsal CRM Sistemi</h3>
-        <p>Finans sektörüne yönelik, yapay zeka destekli müşteri ilişkileri ve otomasyon yazılımı.</p>
-        <div class="portfolio-tags">
-          <span>React</span><span>Python</span><span>PostgreSQL</span>
-        </div>
-      </div>
+    <div class="price-card popular">
+      <h3>Profesyonel</h3>
+      <div class="price">₺45.000<span>'den başlayan</span></div>
+      <ul class="price-features">
+        <li>E-Ticaret / Özel Web Yazılımı</li>
+        <li>Gelişmiş Yönetim Paneli</li>
+        <li>Ödeme & Kargo Entegrasyonu</li>
+        <li>Siber Güvenlik Taraması</li>
+        <li>6 Ay Teknik Destek</li>
+      </ul>
+      <a href="#iletisim" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 0.9rem;">Teklif Al</a>
     </div>
-    <div class="portfolio-card">
-      <div class="portfolio-img">🛡️</div>
-      <div class="portfolio-info">
-        <h3>Ağ Güvenlik Paneli</h3>
-        <p>Gerçek zamanlı tehdit tespiti ve SIEM entegrasyonu sağlayan siber güvenlik izleme ekranı.</p>
-        <div class="portfolio-tags">
-          <span>Python</span><span>Docker</span><span>AWS</span>
-        </div>
-      </div>
+    <div class="price-card">
+      <h3>Kurumsal</h3>
+      <div class="price">Özel<span>Fiyatlandırma</span></div>
+      <ul class="price-features">
+        <li>Mobil Uygulama + Web</li>
+        <li>Özel CRM / ERP Sistemleri</li>
+        <li>Bulut Altyapı Kurulumu (AWS)</li>
+        <li>7/24 Siber Güvenlik İzleme</li>
+        <li>Sınırsız Destek</li>
+      </ul>
+      <a href="#iletisim" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 0.9rem;">İletişime Geç</a>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="stats">
-    <div><div class="num" data-target="9">0</div><div class="lbl">Sertifika</div></div>
-    <div><div class="num" data-target="3">0</div><div class="lbl">Kurum Onayı</div></div>
-    <div><div class="num" data-target="100">0</div><div class="lbl">% Şeffaf Süreç</div></div>
-    <div><div class="num" data-target="24">0</div><div class="lbl">Saat Teklif Yanıtı</div></div>
   </div>
 </section>
 
@@ -341,66 +337,26 @@
     <h2>Nasıl Çalışıyoruz?</h2>
     <p>Şeffaf ve öngörülebilir bir süreç</p>
   </div>
-  <div class="steps">
-    <div class="step">
-      <div class="no">01</div>
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+    <div class="card" style="padding: 2rem;">
+      <div class="no" style="font-size:2rem; font-weight:900; color:var(--accent); margin-bottom:1rem;">01</div>
       <h3>Keşif & Analiz</h3>
       <p>İhtiyaçlarınızı dinliyor, teknik gereksinimleri belirliyoruz.</p>
     </div>
-    <div class="step">
-      <div class="no">02</div>
+    <div class="card" style="padding: 2rem;">
+      <div class="no" style="font-size:2rem; font-weight:900; color:var(--accent); margin-bottom:1rem;">02</div>
       <h3>Tasarım & Prototip</h3>
       <p>Onaylı prototip ile beklentileri netleştiriyoruz.</p>
     </div>
-    <div class="step">
-      <div class="no">03</div>
+    <div class="card" style="padding: 2rem;">
+      <div class="no" style="font-size:2rem; font-weight:900; color:var(--accent); margin-bottom:1rem;">03</div>
       <h3>Geliştirme</h3>
       <p>Çevik metodoloji ile haftalık demo ve sürekli geri bildirim.</p>
     </div>
-    <div class="step">
-      <div class="no">04</div>
+    <div class="card" style="padding: 2rem;">
+      <div class="no" style="font-size:2rem; font-weight:900; color:var(--accent); margin-bottom:1rem;">04</div>
       <h3>Test & Yayın</h3>
       <p>Otomatik testler, performans kontrolü ve canlıya alma.</p>
-    </div>
-  </div>
-</section>
-
-<!-- MÜŞTERİ YORUMLARI -->
-<section>
-  <div class="sec-title">
-    <h2>Müşteri Yorumları</h2>
-    <p>Birlikte çalıştığımız markalar ne diyor?</p>
-  </div>
-  <div class="testimonials">
-    <div class="testimonial">
-      <p>Barış Yazılım ile geliştirdiğimiz e-ticaret projesinde süreç boyunca çok şeffaflardı. Teslim süresi ve kod kalitesi beklentimizin çok üzerindeydi.</p>
-      <div class="author">
-        <div class="avatar">A</div>
-        <div class="info">
-          <h4>Ahmet Yılmaz</h4>
-          <span>Kurucu, TrendStore</span>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial">
-      <p>Özellikle siber güvenlik danışmanlığı konusunda gösterdikleri hassasiyet ve sundukları çözümler, sistemlerimizi çok daha güvenli hale getirdi.</p>
-      <div class="author">
-        <div class="avatar">M</div>
-        <div class="info">
-          <h4>Merve Kaya</h4>
-          <span>CTO, FinansTech</span>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial">
-      <p>Kurumsal CRM yazılımımız sayesinde operasyonel süreçlerimiz %40 hızlandı. İhtiyaçlarımızı çok iyi analiz edip kusursuz bir mimari kurdular.</p>
-      <div class="author">
-        <div class="avatar">C</div>
-        <div class="info">
-          <h4>Can Demir</h4>
-          <span>Operasyon Direktörü, Lojistik A.Ş.</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -414,7 +370,10 @@
 </section>
 
 <footer>
-  <div class="logo">Barış<span>.</span>Yazılım</div>
+  <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+    <div class="logo-icon">{ }</div>
+    Barış<span>.</span>Yazılım
+  </div>
   <p>© 2026 Barış Yazılım. Tüm hakları saklıdır.</p>
 </footer>
 
@@ -425,37 +384,6 @@
     glow.style.left = e.clientX + 'px';
     glow.style.top = e.clientY + 'px';
   });
-
-  // SAYAÇLAR
-  const counters = document.querySelectorAll('.num');
-  const speed = 80;
-  const animateCounters = () => {
-    counters.forEach(counter => {
-      const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
-        const inc = target / speed;
-        if (count < target) {
-          counter.innerText = Math.ceil(count + inc);
-          setTimeout(updateCount, 20);
-        } else {
-          counter.innerText = target;
-        }
-      };
-      updateCount();
-    });
-  };
-
-  let observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        animateCounters();
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  observer.observe(document.querySelector('.stats'));
 </script>
 
 </body>
