@@ -7,8 +7,8 @@
 <style>
   :root{
     --bg:#05080f;
-    --card:rgba(13, 19, 31, 0.7);
-    --card-hover:rgba(18, 26, 43, 0.9);
+    --card:rgba(13, 19, 31, 0.75);
+    --card-hover:rgba(20, 30, 50, 0.9);
     --accent:#3b82f6;
     --accent2:#06b6d4;
     --text:#f8fafc;
@@ -19,303 +19,245 @@
   html{scroll-behavior:smooth}
   body{
     font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background-color:var(--bg);
-    color:var(--text);
-    line-height:1.6;
-    overflow-x:hidden;
+    background-color:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;
+  }
+  
+  /* DEV ARKA PLAN YAZISI */
+  .bg-text {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20vw;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.02);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: -1;
+    letter-spacing: -1vw;
   }
 
   /* HAREKETLİ ARKA PLAN IZGARASI */
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background-image: 
-      linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
-    animation: gridMove 30s linear infinite;
+    content: '';position: fixed;inset: 0;z-index: -2;
+    background-image: linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;animation: gridMove 30s linear infinite;
   }
-  @keyframes gridMove {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(40px); }
-  }
-
-  /* FAREYİ TAKİP EDEN IŞIK */
+  @keyframes gridMove {0% { transform: translateY(0); }100% { transform: translateY(50px); }}
+  
   #mouse-glow {
-    position: fixed;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 60%);
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    transition: opacity 0.3s;
+    position: fixed;width: 900px;height: 900px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 60%);
+    border-radius: 50%;pointer-events: none;transform: translate(-50%, -50%);z-index: -1;transition: opacity 0.3s;
   }
 
   /* NAV */
   nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    display:flex;justify-content:space-between;align-items:center;
-    padding:1.2rem 6%;background:rgba(5,8,15,.6);
-    backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
+    position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
+    padding:1.5rem 6%;background:rgba(5,8,15,.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
   }
-  .logo{font-size:1.5rem;font-weight:900;letter-spacing:-1px}
-  .logo span{color:var(--accent);text-shadow:0 0 15px rgba(59,130,246,0.6)}
+  .logo{font-size:1.6rem;font-weight:900;letter-spacing:-1px}
+  .logo span{color:var(--accent);text-shadow:0 0 15px rgba(59,130,246,0.8)}
   nav ul{display:flex;gap:2.5rem;list-style:none;align-items:center}
-  nav a{color:var(--muted);text-decoration:none;font-size:.95rem;font-weight:600;transition:.3s}
+  nav a{color:var(--muted);text-decoration:none;font-size:1rem;font-weight:600;transition:.3s}
   nav a:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,0.5)}
   .nav-cta{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    color:#fff!important;padding:.7rem 1.6rem;
-    border-radius:8px;font-weight:800;font-size:.9rem;
-    box-shadow: 0 4px 20px rgba(59,130,246,0.4);transition:.3s;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;padding:.8rem 1.8rem;
+    border-radius:8px;font-weight:900;font-size:.95rem;box-shadow: 0 4px 20px rgba(59,130,246,0.5);transition:.3s;
   }
-  .nav-cta:hover{transform:translateY(-2px);box-shadow: 0 8px 30px rgba(59,130,246,0.6)}
+  .nav-cta:hover{transform:translateY(-2px);box-shadow: 0 8px 30px rgba(59,130,246,0.8)}
   @media(max-width:768px){nav ul{display:none}}
 
   /* HERO */
   .hero{
-    min-height:100vh;display:flex;flex-direction:column;
-    justify-content:center;align-items:center;text-align:center;
-    padding:10rem 6% 5rem;position:relative;z-index:1;
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+    padding:12rem 6% 5rem;position:relative;z-index:1;
   }
   .badge{
-    display:inline-flex;align-items:center;gap:.6rem;
-    padding:.6rem 1.4rem;border:1px solid rgba(6,182,212,0.4);
-    border-radius:999px;font-size:.85rem;color:var(--accent2);
-    margin-bottom:2.5rem;background:rgba(6,182,212,0.1);
-    font-weight:800;letter-spacing:2px;text-transform:uppercase;
-    box-shadow:0 0 20px rgba(6,182,212,0.2);
+    display:inline-flex;align-items:center;gap:.8rem;padding:.8rem 1.8rem;border:1px solid rgba(6,182,212,0.5);
+    border-radius:999px;font-size:.9rem;color:var(--accent2);margin-bottom:3rem;background:rgba(6,182,212,0.1);
+    font-weight:900;letter-spacing:2px;text-transform:uppercase;box-shadow:0 0 30px rgba(6,182,212,0.3);
   }
-  .badge .dot{
-    width:8px;height:8px;border-radius:50%;background:var(--accent2);
-    box-shadow:0 0 15px var(--accent2);animation:pulse 1.5s infinite;
-  }
-  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+  .badge .dot{width:10px;height:10px;border-radius:50%;background:var(--accent2);box-shadow:0 0 20px var(--accent2);animation:pulse 1.5s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
   
   .hero h1{
-    font-size:clamp(3rem,7vw,5.5rem);font-weight:900;
-    letter-spacing:-3px;line-height:1.05;max-width:1000px;
-    text-shadow:0 10px 30px rgba(0,0,0,0.5);
+    font-size:clamp(3.5rem,8vw,7rem);font-weight:900;letter-spacing:-4px;line-height:1;max-width:1200px;
+    text-shadow:0 20px 50px rgba(0,0,0,0.8);
   }
   .hero h1 .grad{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 0 20px rgba(59,130,246,0.4));
+    background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 30px rgba(59,130,246,0.6));
   }
-  .hero p{
-    font-size:clamp(1.1rem,2vw,1.3rem);color:var(--muted);
-    max-width:650px;margin:2rem 0 3.5rem;line-height:1.8;
-  }
+  .hero p{font-size:clamp(1.2rem,2vw,1.4rem);color:var(--muted);max-width:700px;margin:2.5rem 0 4rem;line-height:1.8;}
   .btn{
-    display:inline-block;padding:1.1rem 2.8rem;border-radius:12px;
-    font-weight:900;text-decoration:none;transition:.3s;font-size:1.05rem;
-    text-transform:uppercase;letter-spacing:1.5px;
+    display:inline-block;padding:1.2rem 3.5rem;border-radius:12px;font-weight:900;text-decoration:none;transition:.3s;
+    font-size:1.1rem;text-transform:uppercase;letter-spacing:2px;
   }
   .btn-primary{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    color:#fff;box-shadow:0 10px 40px rgba(59,130,246,0.5);
-    border:1px solid rgba(255,255,255,0.2);
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+    box-shadow:0 15px 50px rgba(59,130,246,0.6);border:1px solid rgba(255,255,255,0.3);
   }
-  .btn-primary:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 15px 50px rgba(59,130,246,0.7)}
+  .btn-primary:hover{transform:translateY(-5px) scale(1.05);box-shadow:0 20px 60px rgba(59,130,246,0.9)}
 
   /* TEKNOLOJİ ŞERİDİ */
   .tech-strip {
-    width: 100vw;
-    overflow: hidden;
-    background: rgba(13,19,31,0.6);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 1.5rem 0;
-    display: flex;
-    white-space: nowrap;
-    position: relative;
-    z-index: 1;
-    backdrop-filter: blur(10px);
+    width: 100vw;overflow: hidden;background: rgba(13,19,31,0.8);border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);padding: 2rem 0;display: flex;white-space: nowrap;position: relative;z-index: 1;backdrop-filter: blur(10px);
   }
-  .tech-track {
-    display: flex;
-    animation: scroll 30s linear infinite;
-    gap: 4rem;
-    align-items: center;
-    padding-left: 4rem;
-  }
-  .tech-track span {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: 0.3s;
-  }
-  .tech-track span:hover { color: var(--accent2); text-shadow:0 0 10px var(--accent2); }
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+  .tech-track {display: flex;animation: scroll 25s linear infinite;gap: 5rem;align-items: center;padding-left: 5rem;}
+  .tech-track span {font-size: 1.5rem;font-weight: 900;color: rgba(255,255,255,0.2);letter-spacing: 3px;text-transform: uppercase;transition: 0.3s;}
+  .tech-track span:hover { color: var(--accent2); text-shadow:0 0 20px var(--accent2); }
+  @keyframes scroll {0% { transform: translateX(0); }100% { transform: translateX(-50%); }}
 
   /* SECTION */
-  section{padding:7rem 6%;max-width:1300px;margin:0 auto;position:relative;z-index:1}
-  .sec-title{text-align:center;margin-bottom:5rem}
+  section{padding:8rem 6%;max-width:1400px;margin:0 auto;position:relative;z-index:1}
+  .sec-title{text-align:center;margin-bottom:6rem}
   .sec-title h2{
-    font-size:clamp(2.2rem,4vw,3rem);font-weight:900;letter-spacing:-1.5px;
-    display:inline-block;position:relative;color:#fff;
+    font-size:clamp(2.5rem,5vw,4rem);font-weight:900;letter-spacing:-2px;display:inline-block;position:relative;color:#fff;
   }
   .sec-title h2::after{
-    content:'';position:absolute;left:50%;bottom:-15px;transform:translateX(-50%);
-    width:80px;height:4px;background:linear-gradient(90deg, var(--accent), var(--accent2));border-radius:2px;
-    box-shadow:0 0 15px rgba(59,130,246,0.5);
+    content:'';position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);width:100px;height:5px;
+    background:linear-gradient(90deg, var(--accent), var(--accent2));border-radius:3px;box-shadow:0 0 20px rgba(59,130,246,0.8);
   }
-  .sec-title p{color:var(--muted);margin-top:1.5rem;font-size:1.1rem}
+  .sec-title p{color:var(--muted);margin-top:2rem;font-size:1.2rem;letter-spacing:1px;text-transform:uppercase;font-weight:600}
 
-  /* HİZMETLER (GLASSMORPHISM) */
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem}
+  /* HİZMETLER */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem}
   .card{
-    background:var(--card);
-    backdrop-filter: blur(12px);
-    border:1px solid var(--border);border-radius:20px;padding:2.5rem;
-    transition:.4s;position:relative;overflow:hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    background:var(--card);backdrop-filter: blur(16px);border:1px solid var(--border);border-radius:24px;padding:3rem;
+    transition:.4s;position:relative;overflow:hidden;box-shadow: 0 15px 40px rgba(0,0,0,0.4);
   }
   .card::before{
     content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-    background:radial-gradient(circle at top right, rgba(59,130,246,0.15), transparent 60%);
-    opacity:0;transition:.4s;
+    background:radial-gradient(circle at top right, rgba(59,130,246,0.2), transparent 60%);opacity:0;transition:.4s;
   }
   .card:hover{
-    background:var(--card-hover);
-    transform:translateY(-10px);
-    border-color:rgba(59,130,246,0.6);
-    box-shadow:0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(59,130,246,0.1);
+    background:var(--card-hover);transform:translateY(-15px);border-color:rgba(59,130,246,0.8);
+    box-shadow:0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(59,130,246,0.2);
   }
   .card:hover::before{opacity:1}
   .card .icon{
-    width:60px;height:60px;border-radius:14px;
-    background:rgba(59,130,246,0.1);display:flex;
-    align-items:center;justify-content:center;font-size:1.8rem;
-    margin-bottom:1.5rem;border:1px solid rgba(59,130,246,0.3);
-    color:var(--accent2);box-shadow:0 0 20px rgba(59,130,246,0.2) inset;
+    width:70px;height:70px;border-radius:16px;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;
+    font-size:2rem;margin-bottom:2rem;border:1px solid rgba(59,130,246,0.4);color:var(--accent2);box-shadow:0 0 30px rgba(59,130,246,0.3) inset;
   }
-  .card h3{font-size:1.3rem;margin-bottom:.8rem;letter-spacing:-.5px;font-weight:800;color:#fff}
-  .card p{color:var(--muted);font-size:1rem}
+  .card h3{font-size:1.5rem;margin-bottom:1rem;letter-spacing:-.5px;font-weight:900;color:#fff}
+  .card p{color:var(--muted);font-size:1.05rem;line-height:1.8}
+
+  /* PORTFOLYO (PROJELER) */
+  .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:3rem}
+  .portfolio-card{
+    background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden;position:relative;
+    transition:.4s;box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  }
+  .portfolio-card:hover{transform:translateY(-10px);border-color:var(--accent2);box-shadow:0 20px 50px rgba(0,0,0,0.6)}
+  .portfolio-img{
+    height:250px;background:linear-gradient(45deg, #0f172a, #1e293b);display:flex;align-items:center;justify-content:center;
+    font-size:3rem;color:rgba(255,255,255,0.1);position:relative;
+  }
+  .portfolio-card:hover .portfolio-img{background:linear-gradient(45deg, #1e293b, #0f172a)}
+  .portfolio-info{padding:2.5rem}
+  .portfolio-info h3{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:.5rem}
+  .portfolio-info p{color:var(--muted);font-size:1rem;margin-bottom:1.5rem}
+  .portfolio-tags{display:flex;gap:0.8rem;flex-wrap:wrap}
+  .portfolio-tags span{
+    padding:.4rem 1rem;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);
+    border-radius:6px;font-size:.8rem;font-weight:700;color:var(--accent);
+  }
 
   /* SAYAÇLI İSTATİSTİKLER */
   .stats{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:2rem;text-align:center;background:var(--card);
-    backdrop-filter: blur(12px);
-    border:1px solid var(--border);border-radius:24px;padding:4rem 2rem;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;text-align:center;background:var(--card);
+    backdrop-filter: blur(20px);border:1px solid var(--border);border-radius:30px;padding:5rem 2rem;box-shadow: 0 20px 50px rgba(0,0,0,0.4);
   }
   .stats .num{
-    font-size:3.5rem;font-weight:900;letter-spacing:-2px;
-    background:linear-gradient(135deg,#fff,var(--accent2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 0 15px rgba(6,182,212,0.3));
+    font-size:4.5rem;font-weight:900;letter-spacing:-3px;background:linear-gradient(135deg,#fff,var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 25px rgba(6,182,212,0.5));
   }
-  .stats .lbl{color:var(--muted);font-size:.95rem;margin-top:.5rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+  .stats .lbl{color:var(--muted);font-size:1rem;margin-top:1rem;font-weight:800;text-transform:uppercase;letter-spacing:2px}
 
   /* SÜREÇ */
-  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2.5rem}
   .step{
-    padding:2.5rem;background:var(--card);backdrop-filter: blur(12px);
-    border-radius:20px;border:1px solid var(--border);transition:.3s;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    padding:3rem;background:var(--card);backdrop-filter: blur(16px);border-radius:24px;border:1px solid var(--border);
+    transition:.3s;box-shadow: 0 15px 40px rgba(0,0,0,0.3);
   }
-  .step:hover{border-color:var(--accent);transform:translateY(-8px);box-shadow:0 15px 40px rgba(59,130,246,0.15)}
-  .step .no{
-    font-size:2rem;font-weight:900;color:rgba(59,130,246,0.2);
-    letter-spacing:2px;margin-bottom:1rem;
-    -webkit-text-stroke:1px var(--accent);
+  .step:hover{border-color:var(--accent);transform:translateY(-10px);box-shadow:0 20px 50px rgba(59,130,246,0.2)}
+  .step .no{font-size:3rem;font-weight:900;color:rgba(59,130,246,0.1);letter-spacing:3px;margin-bottom:1.5rem;-webkit-text-stroke:1px var(--accent);}
+  .step h3{font-size:1.4rem;margin-bottom:1rem;letter-spacing:-.5px;font-weight:900;color:#fff}
+  .step p{color:var(--muted);font-size:1rem}
+
+  /* MÜŞTERİ YORUMLARI */
+  .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2.5rem}
+  .testimonial{
+    background:var(--card);backdrop-filter: blur(16px);border:1px solid var(--border);border-radius:24px;padding:3rem;
+    position:relative;box-shadow: 0 15px 40px rgba(0,0,0,0.3);
   }
-  .step h3{font-size:1.2rem;margin-bottom:.6rem;letter-spacing:-.5px;font-weight:800;color:#fff}
-  .step p{color:var(--muted);font-size:.95rem}
+  .testimonial::before{
+    content:'"';position:absolute;top:10px;right:20px;font-size:6rem;color:rgba(59,130,246,0.1);font-family:serif;line-height:1;
+  }
+  .testimonial p{color:var(--text);font-size:1.1rem;font-style:italic;margin-bottom:2rem;position:relative;z-index:1}
+  .testimonial .author{display:flex;align-items:center;gap:1rem}
+  .testimonial .avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff}
+  .testimonial .info h4{color:#fff;font-size:1.1rem;font-weight:800;margin-bottom:.2rem}
+  .testimonial .info span{color:var(--muted);font-size:.9rem}
 
   /* SERTİFİKALAR */
-  .cert-group{margin-bottom:4rem}
+  .cert-group{margin-bottom:5rem}
   .cert-group:last-child{margin-bottom:0}
-  .cert-group-title{
-    display:flex;align-items:center;gap:1.2rem;
-    margin-bottom:2rem;padding-bottom:1rem;
-    border-bottom:1px solid var(--border);
-  }
-  .cert-group-title h3{font-size:1.4rem;font-weight:900;letter-spacing:-.5px;color:#fff}
+  .cert-group-title{display:flex;align-items:center;gap:1.5rem;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+  .cert-group-title h3{font-size:1.8rem;font-weight:900;letter-spacing:-1px;color:#fff}
   .cert-badge{
-    display:inline-flex;align-items:center;justify-content:center;
-    padding:.5rem 1.2rem;border-radius:8px;font-size:.85rem;
-    font-weight:900;letter-spacing:1px;
-    background:rgba(59,130,246,.15);color:var(--accent);
-    border:1px solid rgba(59,130,246,.4);
-    box-shadow: 0 0 15px rgba(59,130,246,0.2);
+    display:inline-flex;align-items:center;justify-content:center;padding:.6rem 1.5rem;border-radius:8px;font-size:.95rem;
+    font-weight:900;letter-spacing:2px;background:rgba(59,130,246,.15);color:var(--accent);border:1px solid rgba(59,130,246,.5);box-shadow: 0 0 20px rgba(59,130,246,0.3);
   }
-  .cert-badge.ibm{background:rgba(6,182,212,.15);color:var(--accent2);border-color:rgba(6,182,212,.4);box-shadow: 0 0 15px rgba(6,182,212,0.2);}
-  .cert-badge.cisco{background:rgba(168,85,247,.15);color:#c084fc;border-color:rgba(168,85,247,.4);box-shadow: 0 0 15px rgba(168,85,247,0.2);}
+  .cert-badge.ibm{background:rgba(6,182,212,.15);color:var(--accent2);border-color:rgba(6,182,212,.5);box-shadow: 0 0 20px rgba(6,182,212,0.3);}
+  .cert-badge.cisco{background:rgba(168,85,247,.15);color:#c084fc;border-color:rgba(168,85,247,.5);box-shadow: 0 0 20px rgba(168,85,247,0.3);}
   
-  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
   .cert-card{
-    display:block;text-decoration:none;
-    background:var(--card);backdrop-filter: blur(12px);
-    border:1px solid var(--border);border-radius:16px;
-    padding:1.8rem;transition:.3s;position:relative;
+    display:block;text-decoration:none;background:var(--card);backdrop-filter: blur(16px);border:1px solid var(--border);
+    border-radius:20px;padding:2.5rem;transition:.3s;position:relative;box-shadow: 0 15px 40px rgba(0,0,0,0.3);
   }
-  .cert-card:hover{
-    transform:translateY(-6px);
-    border-color:var(--accent2);
-    box-shadow:0 15px 35px rgba(0,0,0,0.4), 0 0 20px rgba(6,182,212,0.15);
-  }
+  .cert-card:hover{transform:translateY(-10px);border-color:var(--accent2);box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(6,182,212,0.3);}
   .cert-icon{
-    width:50px;height:50px;border-radius:12px;
-    background:rgba(59,130,246,.1);
-    border:1px solid rgba(59,130,246,.3);
-    display:flex;align-items:center;justify-content:center;
-    font-size:1.4rem;margin-bottom:1.2rem;color:var(--accent2);
+    width:60px;height:60px;border-radius:14px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.4);
+    display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1.5rem;color:var(--accent2);
   }
-  .cert-card h4{font-size:1.05rem;font-weight:800;margin-bottom:.4rem;letter-spacing:-.3px;color:#fff;line-height:1.4}
-  .cert-card p{color:var(--muted);font-size:.9rem;margin-bottom:1.2rem}
-  .cert-open{
-    font-size:.9rem;font-weight:800;color:var(--accent2);
-    opacity:0.8;transition:.3s;display:flex;align-items:center;gap:.5rem;
-  }
-  .cert-card:hover .cert-open{opacity:1;gap:1rem;text-shadow:0 0 10px var(--accent2)}
+  .cert-card h4{font-size:1.2rem;font-weight:900;margin-bottom:.5rem;letter-spacing:-.5px;color:#fff;line-height:1.4}
+  .cert-card p{color:var(--muted);font-size:1rem;margin-bottom:1.5rem}
+  .cert-open{font-size:1rem;font-weight:900;color:var(--accent2);opacity:0.8;transition:.3s;display:flex;align-items:center;gap:.5rem;text-transform:uppercase;letter-spacing:1px;}
+  .cert-card:hover .cert-open{opacity:1;gap:1.5rem;text-shadow:0 0 15px var(--accent2)}
 
   /* İLETİŞİM */
   .contact{
-    background:linear-gradient(160deg,rgba(13,19,31,0.9),rgba(9,13,22,0.9));
-    backdrop-filter: blur(20px);
-    border:1px solid var(--border);border-radius:30px;
-    padding:5rem 3rem;text-align:center;max-width:900px;margin:0 auto;
-    position:relative;overflow:hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    background:linear-gradient(160deg,rgba(13,19,31,0.95),rgba(9,13,22,0.95));backdrop-filter: blur(30px);
+    border:1px solid var(--border);border-radius:40px;padding:7rem 4rem;text-align:center;max-width:1000px;margin:0 auto;
+    position:relative;overflow:hidden;box-shadow: 0 30px 80px rgba(0,0,0,0.6);
   }
   .contact::before{
-    content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
-    width:100%;height:100%;background:radial-gradient(circle at top, rgba(59,130,246,0.2), transparent 60%);
-    pointer-events:none;
+    content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;
+    background:radial-gradient(circle at top, rgba(59,130,246,0.3), transparent 70%);pointer-events:none;
   }
-  .contact h2{font-size:clamp(2.2rem,4vw,3rem);margin-bottom:1rem;letter-spacing:-1.5px;font-weight:900;color:#fff}
-  .contact p{color:var(--muted);margin-bottom:3rem;max-width:550px;margin-left:auto;margin-right:auto;font-size:1.1rem}
+  .contact h2{font-size:clamp(2.5rem,5vw,4rem);margin-bottom:1.5rem;letter-spacing:-2px;font-weight:900;color:#fff}
+  .contact p{color:var(--muted);margin-bottom:4rem;max-width:600px;margin-left:auto;margin-right:auto;font-size:1.2rem}
 
   /* FOOTER */
-  footer{
-    text-align:center;padding:4rem 6%;border-top:1px solid var(--border);
-    color:var(--muted);font-size:.95rem;margin-top:5rem;background:rgba(5,8,15,0.8);position:relative;z-index:1;
-  }
-  footer .logo{font-size:1.4rem;margin-bottom:.5rem}
+  footer{text-align:center;padding:5rem 6%;border-top:1px solid var(--border);color:var(--muted);font-size:1rem;margin-top:6rem;background:rgba(5,8,15,0.9);position:relative;z-index:1;}
+  footer .logo{font-size:1.8rem;margin-bottom:1rem}
 </style>
 </head>
 <body>
 
+<div class="bg-text">BARIŞ YAZILIM</div>
 <div id="mouse-glow"></div>
 
 <nav>
   <div class="logo">Barış<span>.</span>Yazılım</div>
   <ul>
     <li><a href="#hizmetler">Hizmetler</a></li>
-    <li><a href="#sertifikalar">Sertifikalar</a></li>
+    <li><a href="#portfolyo">Projeler</a></li>
     <li><a href="#surec">Süreç</a></li>
+    <li><a href="#sertifikalar">Sertifikalar</a></li>
     <li><a href="#iletisim" class="nav-cta">Teklif Al</a></li>
   </ul>
 </nav>
@@ -373,6 +315,46 @@
   </div>
 </section>
 
+<!-- YENİ EKLENEN: PORTFOLYO -->
+<section id="portfolyo">
+  <div class="sec-title">
+    <h2>Öne Çıkan Projeler</h2>
+    <p>Geliştirdiğimiz bazı çözümler</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card">
+      <div class="portfolio-img">🛒</div>
+      <div class="portfolio-info">
+        <h3>E-Ticaret Platformu</h3>
+        <p>Yüksek trafikli, ölçeklenebilir ve güvenli ödeme altyapısına sahip modern e-ticaret sistemi.</p>
+        <div class="portfolio-tags">
+          <span>Next.js</span><span>Node.js</span><span>MongoDB</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-img">🏦</div>
+      <div class="portfolio-info">
+        <h3>Kurumsal CRM Sistemi</h3>
+        <p>Finans sektörüne yönelik, yapay zeka destekli müşteri ilişkileri ve otomasyon yazılımı.</p>
+        <div class="portfolio-tags">
+          <span>React</span><span>Python</span><span>PostgreSQL</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-img">🛡️</div>
+      <div class="portfolio-info">
+        <h3>Ağ Güvenlik Paneli</h3>
+        <p>Gerçek zamanlı tehdit tespiti ve SIEM entegrasyonu sağlayan siber güvenlik izleme ekranı.</p>
+        <div class="portfolio-tags">
+          <span>Python</span><span>Docker</span><span>AWS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="stats">
     <div><div class="num" data-target="9">0</div><div class="lbl">Sertifika</div></div>
@@ -411,7 +393,47 @@
   </div>
 </section>
 
-<!-- SERTİFİKALAR (LİNKLER DÜZELTİLDİ) -->
+<!-- YENİ EKLENEN: MÜŞTERİ YORUMLARI -->
+<section>
+  <div class="sec-title">
+    <h2>Müşteri Yorumları</h2>
+    <p>Birlikte çalıştığımız markalar ne diyor?</p>
+  </div>
+  <div class="testimonials">
+    <div class="testimonial">
+      <p>Barış Yazılım ile geliştirdiğimiz e-ticaret projesinde süreç boyunca çok şeffaflardı. Teslim süresi ve kod kalitesi beklentimizin çok üzerindeydi.</p>
+      <div class="author">
+        <div class="avatar">A</div>
+        <div class="info">
+          <h4>Ahmet Yılmaz</h4>
+          <span>Kurucu, TrendStore</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <p>Özellikle siber güvenlik danışmanlığı konusunda gösterdikleri hassasiyet ve sundukları çözümler, sistemlerimizi çok daha güvenli hale getirdi.</p>
+      <div class="author">
+        <div class="avatar">M</div>
+        <div class="info">
+          <h4>Merve Kaya</h4>
+          <span>CTO, FinansTech</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <p>Kurumsal CRM yazılımımız sayesinde operasyonel süreçlerimiz %40 hızlandı. İhtiyaçlarımızı çok iyi analiz edip kusursuz bir mimari kurdular.</p>
+      <div class="author">
+        <div class="avatar">C</div>
+        <div class="info">
+          <h4>Can Demir</h4>
+          <span>Operasyon Direktörü, Lojistik A.Ş.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERTİFİKALAR (RAW LİNKLER) -->
 <section id="sertifikalar">
   <div class="sec-title">
     <h2>Sertifikalar</h2>
@@ -424,37 +446,37 @@
       <h3>Bilgi Teknolojileri ve İletişim Kurumu (6)</h3>
     </div>
     <div class="cert-grid">
-      <a class="cert-card" href="sertifikalar/Siber_G%C3%BCvenli%C4%9Fe_Giri%C5%9F_Sertifika%20(1)%20kopyas%C4%B1.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Siber_Güvenliğe_Giriş_Sertifika%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🛡️</div>
         <h4>Siber Güvenliğe Giriş</h4>
         <p>BTK · 16.06.2026</p>
         <span class="cert-open">Sertifikayı Gör →</span>
       </a>
-      <a class="cert-card" href="sertifikalar/Siber_Tehdit_%C4%B0stihbarat%C4%B1_ve_Tehdit_Avc%C4%B1l%C4%B1%C4%9F%C4%B1_Sertifika%20kopyas%C4%B1.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Siber_Tehdit_İstihbaratı_ve_Tehdit_Avcılığı_Sertifika%20kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🔍</div>
         <h4>Siber Tehdit İstihbaratı ve Tehdit Avcılığı</h4>
         <p>BTK · 15.06.2026</p>
         <span class="cert-open">Sertifikayı Gör →</span>
       </a>
-      <a class="cert-card" href="sertifikalar/Siber_Olay_Tespit_ve_M%C3%BCdahale_Sertifika%20(1)%20kopyas%C4%B1.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Siber_Olay_Tespit_ve_Müdahale_Sertifika%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🚨</div>
         <h4>Siber Olay Tespit ve Müdahale</h4>
         <p>BTK · 18.06.2026</p>
         <span class="cert-open">Sertifikayı Gör →</span>
       </a>
-      <a class="cert-card" href="sertifikalar/SIEM_Temelleri_Sertifika%20kopyas%C4%B1.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/SIEM_Temelleri_Sertifika%20kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">📡</div>
         <h4>SIEM Temelleri</h4>
         <p>BTK · 02.09.2026</p>
         <span class="cert-open">Sertifikayı Gör →</span>
       </a>
-      <a class="cert-card" href="sertifikalar/Siber_Olaylara_M%C3%BCdahale_Sertifika%20(1)%20kopyas%C4%B1.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Siber_Olaylara_Müdahale_Sertifika%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🛠️</div>
         <h4>Siber Olaylara Müdahale</h4>
         <p>BTK · 03.09.2026</p>
         <span class="cert-open">Sertifikayı Gör →</span>
       </a>
-      <a class="cert-card" href="sertifikalar/Python_ile_Siber_G%C3%BCvenlik_Uygulamalar%C4%B1_Sertifika%20(1)%20kopyas%C4%B1.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Python_ile_Siber_Güvenlik_Uygulamaları_Sertifika%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🐍</div>
         <h4>Python ile Siber Güvenlik Uygulamaları</h4>
         <p>BTK · 06.09.2026</p>
@@ -469,13 +491,13 @@
       <h3>IBM SkillsBuild (2)</h3>
     </div>
     <div class="cert-grid">
-      <a class="cert-card" href="sertifikalar/IBMDesign20260907-20-y3gu1g%20kopyas%C4%B1.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/IBMDesign20260907-20-y3gu1g%20kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🔐</div>
         <h4>Cybersecurity Fundamentals</h4>
         <p>IBM SkillsBuild · 07.09.2026</p>
         <span class="cert-open">Sertifikayı Gör →</span>
       </a>
-      <a class="cert-card" href="sertifikalar/ExploreEmergingTech_Badge20260915-20-y55k6%20kopyas%C4%B1.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/ExploreEmergingTech_Badge20260915-20-y55k6%20kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🚀</div>
         <h4>Explore Emerging Tech</h4>
         <p>IBM SkillsBuild · 15.09.2026</p>
@@ -490,7 +512,7 @@
       <h3>Cisco Networking Academy (1)</h3>
     </div>
     <div class="cert-grid">
-      <a class="cert-card" href="sertifikalar/Introduction_to_Cybersecurity_certificate_hsynnbrs63-47-gmail-com_3d9f2182-0d15-4459-ae9a-e655e06a12c9%20(1)%20kopyas%C4%B1.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Introduction_to_Cybersecurity_certificate_hsynnbrs63-47-gmail-com_3d9f2182-0d15-4459-ae9a-e655e06a12c9%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🌐</div>
         <h4>Introduction to Cybersecurity</h4>
         <p>Cisco Networking Academy</p>
@@ -524,14 +546,12 @@
   // SAYAÇLAR
   const counters = document.querySelectorAll('.num');
   const speed = 80;
-
   const animateCounters = () => {
     counters.forEach(counter => {
       const updateCount = () => {
         const target = +counter.getAttribute('data-target');
         const count = +counter.innerText;
         const inc = target / speed;
-
         if (count < target) {
           counter.innerText = Math.ceil(count + inc);
           setTimeout(updateCount, 20);
