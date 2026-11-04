@@ -23,7 +23,7 @@
     --muted: #475569; --border: #e2e8f0; --nav-bg: rgba(248, 250, 252, 0.95);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* 6. Özel İmleç */ }
+  * { margin: 0; padding: 0; box-sizing: border-box; } /* Fare imleci kaldırıldı */
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -31,23 +31,11 @@
     transition: background-color 0.4s, color 0.4s; padding-bottom: 70px;
   }
 
-  /* 8. SCROLL PROGRESS BAR */
+  /* SCROLL PROGRESS BAR */
   #progressBar {
     position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent2));
     width: 0%; z-index: 99999; transition: width 0.1s;
   }
-
-  /* 6. ÖZEL FARE İMLECİ */
-  .cursor-dot, .cursor-outline {
-    position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-    border-radius: 50%; z-index: 99999; pointer-events: none;
-  }
-  .cursor-dot { width: 8px; height: 8px; background: var(--accent2); }
-  .cursor-outline {
-    width: 40px; height: 40px; border: 2px solid var(--accent); transition: width 0.2s, height 0.2s, background 0.2s;
-  }
-  .cursor-outline.hover { width: 60px; height: 60px; background: rgba(59, 130, 246, 0.1); border-color: var(--accent2); }
-  @media (pointer: coarse) { .cursor-dot, .cursor-outline { display: none; } * { cursor: auto; } }
 
   /* PRELOADER */
   #preloader { position: fixed; inset: 0; background: var(--bg); z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s, visibility 0.5s; }
@@ -57,17 +45,15 @@
   .loader-bar { width: 250px; height: 2px; background: var(--border); overflow: hidden; }
   .loader-progress { width: 0%; height: 100%; background: var(--accent); transition: width 0.3s; }
 
-  /* MODALLAR */
+  /* MODALLAR (Sadece Yasal) */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
   .modal-overlay.active { display: flex; }
   .modal-content { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 3rem; max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; }
   .modal-close { position: absolute; top: 1rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; color: var(--muted); }
   .modal-content h2 { color: var(--text); margin-bottom: 1.5rem; font-size: 1.5rem; }
   .modal-content p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
-  .login-form input { width: 100%; padding: 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); margin-bottom: 1rem; }
-  .login-form button { width: 100%; padding: 1rem; background: var(--accent); color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
 
-  /* 1. ÇEREZ BANDI */
+  /* ÇEREZ BANDI */
   #cookieBanner { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem 2rem; width: 90%; max-width: 800px; z-index: 9999; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; box-shadow: 0 10px 40px rgba(0,0,0,0.5); transition: bottom 0.5s ease-in-out; }
   #cookieBanner.show { bottom: 80px; }
   #cookieBanner p { color: var(--muted); font-size: 0.9rem; flex: 1; min-width: 200px; }
@@ -85,17 +71,21 @@
   nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
   nav a:hover { color: var(--text); }
   .nav-controls { display: flex; gap: 1rem; align-items: center; }
-  /* 3. DİL DEĞİŞTİRİCİ */
   .lang-switch { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
   .theme-toggle { background: var(--card); border: 1px solid var(--border); color: var(--text); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-  /* 2. MÜŞTERİ GİRİŞİ */
-  .login-btn { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem; }
-  .login-btn:hover { border-color: var(--accent); color: var(--accent); }
   .nav-cta { background: var(--accent); color: #fff !important; padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
   @media(max-width: 768px) { nav ul { display: none; } }
 
+  /* SOSYAL KANIT / MÜŞTERİ LOGOLARI */
+  .top-bar { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #fff; text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; position: fixed; top: 0; width: 100%; z-index: 101; }
+  .clients-section { padding: 3rem 8% 1rem; border-bottom: 1px solid var(--border); text-align: center; margin-top: 70px; }
+  .clients-title { color: var(--muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2rem; }
+  .logo-cloud { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; opacity: 0.5; }
+  .logo-cloud span { font-size: 1.5rem; font-weight: 800; color: var(--muted); transition: 0.3s; }
+  .logo-cloud span:hover { color: var(--text); opacity: 1; }
+
   /* HERO */
-  .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 12rem 8% 6rem; border-bottom: 1px solid var(--border); margin-top: 70px; }
+  .hero { display: flex; flex-direction: column; justify-content: center; padding: 8rem 8% 6rem; border-bottom: 1px solid var(--border); }
   .hero-content { max-width: 900px; }
   .hero-tag { display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 4px; font-size: 0.85rem; color: var(--accent); font-weight: 700; letter-spacing: 1px; margin-bottom: 2rem; text-transform: uppercase; }
   .hero h1 { font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 2rem; }
@@ -127,11 +117,9 @@
   .service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
   .service-card p { color: var(--muted); font-size: 0.95rem; }
 
-  /* 5. CANLI PROJE AKIŞI */
+  /* CANLI AKIŞ & KURUCU */
   .live-feed { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; font-size: 0.9rem; color: var(--muted); }
   .live-feed span { color: var(--accent); font-weight: 600; }
-
-  /* KURUCU & PRENSİPLER */
   .founder-card { display: flex; gap: 3rem; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 4rem; }
   .founder-avatar { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 4rem; font-weight: 800; color: #fff; flex-shrink: 0; }
   .founder-info h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
@@ -142,15 +130,17 @@
   .cert-badges { display: flex; gap: 1rem; flex-wrap: wrap; }
   .cert-badge { display: flex; align-items: center; gap: 0.5rem; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; color: var(--accent); font-weight: 600; }
   @media(max-width: 768px) { .founder-card { flex-direction: column; text-align: center; padding: 2rem; } .founder-skills, .cert-badges { justify-content: center; } }
+
+  /* ÇALIŞMA PRENSİPLERİ */
   .principles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
   .principle-item { display: flex; align-items: flex-start; gap: 1rem; background: var(--bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
   .principle-icon { color: var(--accent); font-size: 1.5rem; }
   .principle-text h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
   .principle-text p { font-size: 0.9rem; color: var(--muted); margin: 0; }
 
-  /* 4. VAKA ANALİZLERİ */
+  /* VAKALAR */
   .case-grid { display: flex; flex-direction: column; gap: 2rem; }
-  .case-card { display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: 0.3s; cursor: pointer; }
+  .case-card { display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.3s; }
   .case-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
   .case-content { padding: 3rem; flex: 1; }
   .case-content h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
@@ -184,7 +174,7 @@
   .price-features li { color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
   .price-features li::before { content: '✓'; color: var(--accent); font-weight: bold; }
 
-  /* İLETİŞİM & 7. RANDEVU */
+  /* İLETİŞİM */
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
   @media(max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
   .contact-info h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; }
@@ -194,18 +184,14 @@
   .contact-item p { color: var(--accent); font-size: 1.1rem; font-weight: 600; margin: 0; }
   .form-group { margin-bottom: 1.5rem; }
   .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
-  .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: inherit; font-size: 1rem; transition: 0.3s; }
-  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+  .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: inherit; font-size: 1rem; }
   .form-group textarea { min-height: 120px; resize: vertical; }
-  .calendar-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 1rem; transition: 0.3s; }
-  .calendar-btn:hover { background: rgba(59, 130, 246, 0.1); }
+  .calendar-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 1rem; }
 
   /* STICKY BAR */
-  .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); padding: 1rem 8%; display: flex; justify-content: space-between; align-items: center; z-index: 90; transform: translateY(100%); transition: transform 0.3s; box-shadow: 0 -10px 30px rgba(0,0,0,0.3); }
+  .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); padding: 1rem 8%; display: flex; justify-content: space-between; align-items: center; z-index: 90; transform: translateY(100%); transition: transform 0.3s; }
   .sticky-bar.show { transform: translateY(0); }
   .sticky-bar p { color: var(--text); font-weight: 600; margin: 0; }
-  .sticky-bar .btn { padding: 0.6rem 1.5rem; font-size: 0.9rem; }
-  @media(max-width: 768px) { .sticky-bar { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1rem; } }
 
   /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 4rem 8% 2rem; background: var(--bg); }
@@ -214,33 +200,23 @@
   .footer-col h4 { color: var(--text); font-size: 1rem; margin-bottom: 1.5rem; }
   .footer-col ul { list-style: none; }
   .footer-col ul li { margin-bottom: 0.8rem; }
-  .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer; }
+  .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.9rem; cursor: pointer; }
   .footer-col ul li a:hover { color: var(--accent); }
-  .footer-col p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; }
+  .footer-col p { color: var(--muted); font-size: 0.9rem; }
   .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
   .footer-bottom p { color: var(--muted); font-size: 0.85rem; }
-
-  /* VAKA DETAY MODAL */
-  #caseModal .modal-content { max-width: 700px; }
-  .modal-tech-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; margin-bottom: 1.5rem; }
-  .modal-tech-tags span { background: var(--bg); border: 1px solid var(--border); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; color: var(--accent); }
 </style>
 </head>
 <body>
 
-<!-- 8. SCROLL PROGRESS -->
+<div class="top-bar">🚀 15+ Kurumsal Proje Tamamlandı | 7/24 Siber Güvenlik Desteği | NDA Garantisi</div>
 <div id="progressBar"></div>
-
-<!-- 6. ÖZEL İMLEC -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-outline" id="cursorOutline"></div>
 
 <div id="preloader">
   <div class="loader-logo">BARIŞ<span>.</span>YAZILIM</div>
   <div class="loader-bar"><div class="loader-progress" id="loaderProgress"></div></div>
 </div>
 
-<!-- 1. YASAL MODAL -->
 <div class="modal-overlay" id="legalModal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal('legalModal')">×</span>
@@ -249,32 +225,15 @@
   </div>
 </div>
 
-<!-- 2. MÜŞTERİ GİRİŞ PANELİ -->
-<div class="modal-overlay" id="loginModal">
-  <div class="modal-content" style="max-width: 400px;">
-    <span class="modal-close" onclick="closeModal('loginModal')">×</span>
-    <h2 style="text-align: center;">Müşteri Girişi</h2>
-    <p style="text-align: center; margin-bottom: 2rem; font-size: 0.9rem;">Projenizi takip etmek için giriş yapın.</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Giriş simülasyonu: Bu panel gerçekte aktif değildir.'); closeModal('loginModal');">
-      <input type="email" placeholder="E-posta Adresiniz" required>
-      <input type="password" placeholder="Şifreniz" required>
-      <button type="submit">Giriş Yap</button>
-    </form>
-  </div>
-</div>
-
-<!-- 4. VAKA MODAL -->
 <div class="modal-overlay" id="caseModal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal('caseModal')">×</span>
     <h2 id="caseModalTitle"></h2>
     <p id="caseModalText"></p>
-    <div class="modal-tech-tags" id="caseModalTags"></div>
     <a href="#iletisim" class="btn btn-primary" style="width: 100%; text-align: center;" onclick="closeModal('caseModal')">Benzer Bir Proje İstiyorum</a>
   </div>
 </div>
 
-<!-- 1. ÇEREZ BANDI -->
 <div id="cookieBanner">
   <p>Size daha iyi bir deneyim sunabilmek için çerezler kullanıyoruz. <a onclick="openModal('cerez')">Çerez Politikamızı</a> kabul etmiş olursunuz.</p>
   <div class="cookie-btns">
@@ -295,11 +254,20 @@
   <div class="nav-controls">
     <button class="lang-switch" id="langSwitch">EN</button>
     <button class="theme-toggle" id="themeToggle" title="Tema Değiştir">🌙</button>
-    <button class="login-btn" onclick="openModal('login')" title="Müşteri Girişi">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-    </button>
   </div>
 </nav>
+
+<!-- MÜŞTERİ LOGOLARI -->
+<div class="clients-section">
+  <div class="clients-title">Bize Güvenen Kurumsal Çözüm Ortakları</div>
+  <div class="logo-cloud">
+    <span>B2B LOJİSTİK</span>
+    <span>FİNANS DANIŞMANLIK</span>
+    <span>DİJİTAL AJANS</span>
+    <span>E-TİCARET GRUBU</span>
+    <span>SAĞLIK TEKNOLOJİLERİ</span>
+  </div>
+</div>
 
 <header class="hero">
   <div class="hero-content">
@@ -318,7 +286,7 @@
   </div>
 </header>
 
-<!-- 5. CANLI AKIŞ -->
+<!-- CANLI AKIŞ -->
 <section style="padding-top: 2rem; padding-bottom: 0;">
   <div class="live-feed">
     <div class="live-dot"></div>
@@ -372,6 +340,7 @@
       </div>
     </div>
 
+    <!-- ÇALIŞMA PRENSİPLERİ -->
     <div class="principles-grid">
       <div class="principle-item">
         <div class="principle-icon">🛡️</div>
@@ -418,7 +387,7 @@
     <div class="faq-container">
       <div class="faq-item">
         <div class="faq-question" data-lang="sss1-q" onclick="this.parentElement.classList.toggle('active'); playClickSound();">Ödeme koşulları nasıl işliyor? <span>+</span></div>
-        <div class="faq-answer" data-lang="sss1-a"><p>Projelerimiz genellikle 3 aşamalı ödeme planı ile yürütülür: Başlangıç (Proje başlangıcı), Kilometre Taşı (Prototip teslimi) ve Kapanış (Nihai teslim). Tüm ödemeler sözleşmeye bağlıdır.</p></div>
+        <div class="faq-answer" data-lang="sss1-a"><p>Projelerimiz genellikle 3 aşamalı ödeme planı ile yürütülür. Tüm ödemeler sözleşmeye bağlıdır.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" data-lang="sss2-q" onclick="this.parentElement.classList.toggle('active'); playClickSound();">Kaynak kodların mülkiyeti kime ait olacak? <span>+</span></div>
@@ -493,7 +462,6 @@
         <button type="submit" class="btn btn-primary" style="width: 100%;" data-lang="form-btn" onclick="playClickSound()">Teklif Talebi Gönder</button>
       </form>
       
-      <!-- 7. RANDEVU BUTONU -->
       <button class="calendar-btn" onclick="alert('Takvim entegrasyonu için Calendly veya Cal.com linkinizi buraya ekleyebilirsiniz.'); playClickSound();">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
         <span data-lang="calendar-btn">15 Dakikalık Ön Görüşme Planla</span>
@@ -544,7 +512,7 @@
 </div>
 
 <script>
-  // 9. SES EFEKTİ (Tıklama)
+  // SES EFEKTİ
   function playClickSound() {
     try {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -583,35 +551,25 @@
     }, 30);
   });
 
-  // MODAL SİSTEMİ
+  // YASAL MODAL
   const modalContent = {
     'gizlilik': { title: 'Gizlilik Politikası', text: '<p>Barış Yazılım olarak kişisel verilerinizin güvenliğine önem veriyoruz...</p>' },
     'kvkk': { title: 'KVKK Aydınlatma Metni', text: '<p>6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca...</p>' },
     'cerez': { title: 'Çerez Politikası', text: '<p>Sitemizde, deneyiminizi iyileştirmek amacıyla çerezler kullanılmaktadır...</p>' }
   };
-  
   function openModal(type) {
-    if(type === 'login') {
-      document.getElementById('loginModal').classList.add('active');
-      return;
-    }
     const data = modalContent[type];
     document.getElementById('modalTitle').innerText = data.title;
     document.getElementById('modalText').innerHTML = data.text;
     document.getElementById('legalModal').classList.add('active');
     playClickSound();
   }
-  
   function openCaseModal(title, text, tags) {
     document.getElementById('caseModalTitle').innerText = title;
     document.getElementById('caseModalText').innerText = text;
-    const tagContainer = document.getElementById('caseModalTags');
-    tagContainer.innerHTML = tags.map(t => `<span>${t}</span>`).join('');
     document.getElementById('caseModal').classList.add('active');
   }
-  
   function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-  
   function closeCookie() {
     document.getElementById('cookieBanner').classList.remove('show');
     localStorage.setItem('cookieAccepted', 'true');
@@ -634,7 +592,7 @@
     });
   });
 
-  // 8. SCROLL PROGRESS BAR & STICKY BAR
+  // SCROLL PROGRESS BAR & STICKY BAR
   window.onscroll = function() {
     let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -646,19 +604,7 @@
     else { stickyBar.classList.remove('show'); }
   };
 
-  // 6. ÖZEL FARE İMLECİ
-  const dot = document.getElementById('cursorDot');
-  const outline = document.getElementById('cursorOutline');
-  document.addEventListener('mousemove', (e) => {
-    dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
-    outline.style.left = e.clientX + 'px'; outline.style.top = e.clientY + 'px';
-  });
-  document.querySelectorAll('a, button, .case-card, .faq-question, .service-card').forEach(el => {
-    el.addEventListener('mouseenter', () => outline.classList.add('hover'));
-    el.addEventListener('mouseleave', () => outline.classList.remove('hover'));
-  });
-
-  // 3. DİL DEĞİŞTİRİCİ (SİMÜLASYON)
+  // DİL DEĞİŞTİRİCİ (SİMÜLASYON)
   const langSwitch = document.getElementById('langSwitch');
   let isEnglish = false;
   langSwitch.addEventListener('click', () => {
