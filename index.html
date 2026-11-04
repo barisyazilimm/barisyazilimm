@@ -201,33 +201,6 @@
   .testimonial .info h4{color:#fff;font-size:1.1rem;font-weight:800;margin-bottom:.2rem}
   .testimonial .info span{color:var(--muted);font-size:.9rem}
 
-  /* SERTİFİKALAR */
-  .cert-group{margin-bottom:5rem}
-  .cert-group:last-child{margin-bottom:0}
-  .cert-group-title{display:flex;align-items:center;gap:1.5rem;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
-  .cert-group-title h3{font-size:1.8rem;font-weight:900;letter-spacing:-1px;color:#fff}
-  .cert-badge{
-    display:inline-flex;align-items:center;justify-content:center;padding:.6rem 1.5rem;border-radius:8px;font-size:.95rem;
-    font-weight:900;letter-spacing:2px;background:rgba(59,130,246,.15);color:var(--accent);border:1px solid rgba(59,130,246,.5);box-shadow: 0 0 20px rgba(59,130,246,0.3);
-  }
-  .cert-badge.ibm{background:rgba(6,182,212,.15);color:var(--accent2);border-color:rgba(6,182,212,.5);box-shadow: 0 0 20px rgba(6,182,212,0.3);}
-  .cert-badge.cisco{background:rgba(168,85,247,.15);color:#c084fc;border-color:rgba(168,85,247,.5);box-shadow: 0 0 20px rgba(168,85,247,0.3);}
-  
-  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
-  .cert-card{
-    display:block;text-decoration:none;background:var(--card);backdrop-filter: blur(16px);border:1px solid var(--border);
-    border-radius:20px;padding:2.5rem;transition:.3s;position:relative;box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-  }
-  .cert-card:hover{transform:translateY(-10px);border-color:var(--accent2);box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(6,182,212,0.3);}
-  .cert-icon{
-    width:60px;height:60px;border-radius:14px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.4);
-    display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1.5rem;color:var(--accent2);
-  }
-  .cert-card h4{font-size:1.2rem;font-weight:900;margin-bottom:.5rem;letter-spacing:-.5px;color:#fff;line-height:1.4}
-  .cert-card p{color:var(--muted);font-size:1rem;margin-bottom:1.5rem}
-  .cert-open{font-size:1rem;font-weight:900;color:var(--accent2);opacity:0.8;transition:.3s;display:flex;align-items:center;gap:.5rem;text-transform:uppercase;letter-spacing:1px;}
-  .cert-card:hover .cert-open{opacity:1;gap:1.5rem;text-shadow:0 0 15px var(--accent2)}
-
   /* İLETİŞİM */
   .contact{
     background:linear-gradient(160deg,rgba(13,19,31,0.95),rgba(9,13,22,0.95));backdrop-filter: blur(30px);
@@ -257,7 +230,6 @@
     <li><a href="#hizmetler">Hizmetler</a></li>
     <li><a href="#portfolyo">Projeler</a></li>
     <li><a href="#surec">Süreç</a></li>
-    <li><a href="#sertifikalar">Sertifikalar</a></li>
     <li><a href="#iletisim" class="nav-cta">Teklif Al</a></li>
   </ul>
 </nav>
@@ -315,7 +287,7 @@
   </div>
 </section>
 
-<!-- YENİ EKLENEN: PORTFOLYO -->
+<!-- PORTFOLYO -->
 <section id="portfolyo">
   <div class="sec-title">
     <h2>Öne Çıkan Projeler</h2>
@@ -393,7 +365,7 @@
   </div>
 </section>
 
-<!-- YENİ EKLENEN: MÜŞTERİ YORUMLARI -->
+<!-- MÜŞTERİ YORUMLARI -->
 <section>
   <div class="sec-title">
     <h2>Müşteri Yorumları</h2>
@@ -429,95 +401,6 @@
           <span>Operasyon Direktörü, Lojistik A.Ş.</span>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERTİFİKALAR (RAW LİNKLER) -->
-<section id="sertifikalar">
-  <div class="sec-title">
-    <h2>Sertifikalar</h2>
-    <p>BTK, IBM ve Cisco onaylı 9 sertifika ile belgelenmiş siber güvenlik uzmanlığı</p>
-  </div>
-
-  <div class="cert-group">
-    <div class="cert-group-title">
-      <span class="cert-badge">BTK</span>
-      <h3>Bilgi Teknolojileri ve İletişim Kurumu (6)</h3>
-    </div>
-    <div class="cert-grid">
-      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Siber_Güvenliğe_Giriş_Sertifika%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
-        <div class="cert-icon">🛡️</div>
-        <h4>Siber Güvenliğe Giriş</h4>
-        <p>BTK · 16.06.2026</p>
-        <span class="cert-open">Sertifikayı Gör →</span>
-      </a>
-      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Siber_Tehdit_İstihbaratı_ve_Tehdit_Avcılığı_Sertifika%20kopyası.pdf" target="_blank" rel="noopener">
-        <div class="cert-icon">🔍</div>
-        <h4>Siber Tehdit İstihbaratı ve Tehdit Avcılığı</h4>
-        <p>BTK · 15.06.2026</p>
-        <span class="cert-open">Sertifikayı Gör →</span>
-      </a>
-      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Siber_Olay_Tespit_ve_Müdahale_Sertifika%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
-        <div class="cert-icon">🚨</div>
-        <h4>Siber Olay Tespit ve Müdahale</h4>
-        <p>BTK · 18.06.2026</p>
-        <span class="cert-open">Sertifikayı Gör →</span>
-      </a>
-      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/SIEM_Temelleri_Sertifika%20kopyası.pdf" target="_blank" rel="noopener">
-        <div class="cert-icon">📡</div>
-        <h4>SIEM Temelleri</h4>
-        <p>BTK · 02.09.2026</p>
-        <span class="cert-open">Sertifikayı Gör →</span>
-      </a>
-      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Siber_Olaylara_Müdahale_Sertifika%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
-        <div class="cert-icon">🛠️</div>
-        <h4>Siber Olaylara Müdahale</h4>
-        <p>BTK · 03.09.2026</p>
-        <span class="cert-open">Sertifikayı Gör →</span>
-      </a>
-      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Python_ile_Siber_Güvenlik_Uygulamaları_Sertifika%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
-        <div class="cert-icon">🐍</div>
-        <h4>Python ile Siber Güvenlik Uygulamaları</h4>
-        <p>BTK · 06.09.2026</p>
-        <span class="cert-open">Sertifikayı Gör →</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="cert-group">
-    <div class="cert-group-title">
-      <span class="cert-badge ibm">IBM</span>
-      <h3>IBM SkillsBuild (2)</h3>
-    </div>
-    <div class="cert-grid">
-      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/IBMDesign20260907-20-y3gu1g%20kopyası.pdf" target="_blank" rel="noopener">
-        <div class="cert-icon">🔐</div>
-        <h4>Cybersecurity Fundamentals</h4>
-        <p>IBM SkillsBuild · 07.09.2026</p>
-        <span class="cert-open">Sertifikayı Gör →</span>
-      </a>
-      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/ExploreEmergingTech_Badge20260915-20-y55k6%20kopyası.pdf" target="_blank" rel="noopener">
-        <div class="cert-icon">🚀</div>
-        <h4>Explore Emerging Tech</h4>
-        <p>IBM SkillsBuild · 15.09.2026</p>
-        <span class="cert-open">Sertifikayı Gör →</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="cert-group">
-    <div class="cert-group-title">
-      <span class="cert-badge cisco">Cisco</span>
-      <h3>Cisco Networking Academy (1)</h3>
-    </div>
-    <div class="cert-grid">
-      <a class="cert-card" href="https://raw.githubusercontent.com/barisyazilimm/barisyazilimm/main/sertifikalar/Introduction_to_Cybersecurity_certificate_hsynnbrs63-47-gmail-com_3d9f2182-0d15-4459-ae9a-e655e06a12c9%20(1)%20kopyası.pdf" target="_blank" rel="noopener">
-        <div class="cert-icon">🌐</div>
-        <h4>Introduction to Cybersecurity</h4>
-        <p>Cisco Networking Academy</p>
-        <span class="cert-open">Sertifikayı Gör →</span>
-      </a>
     </div>
   </div>
 </section>
