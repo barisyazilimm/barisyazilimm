@@ -6,64 +6,71 @@
 <title>Barış Yazılım — Siber Güvenlik & Yazılım Ajansı</title>
 <style>
   :root{
-    --bg:#05080f;
-    --card:rgba(13, 19, 31, 0.75);
+    --bg:#030509;
+    --card:rgba(13, 19, 31, 0.6);
     --card-hover:rgba(20, 30, 50, 0.9);
-    --accent:#3b82f6;
+    --accent:#2563eb;
     --accent2:#06b6d4;
     --text:#f8fafc;
     --muted:#94a3b8;
-    --border:rgba(59, 130, 246, 0.2);
+    --border:rgba(59, 130, 246, 0.15);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    font-family:'Inter', 'Segoe UI', system-ui, sans-serif;
     background-color:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;
   }
   
+  /* DUYURU BANDI */
+  .top-bar {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    color: #fff; text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 800; letter-spacing: 1px;
+    text-transform: uppercase; position: fixed; top: 0; width: 100%; z-index: 101;
+  }
+
   /* DEV ARKA PLAN YAZISI */
   .bg-text {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    font-size: 22vw; font-weight: 900; color: rgba(255, 255, 255, 0.015);
+    font-size: 25vw; font-weight: 900; color: rgba(255, 255, 255, 0.02);
     white-space: nowrap; pointer-events: none; z-index: -1; letter-spacing: -1vw;
   }
 
   /* HAREKETLİ ARKA PLAN IZGARASI */
   body::before {
     content: '';position: fixed;inset: 0;z-index: -2;
-    background-image: linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;animation: gridMove 30s linear infinite;
+    background-image: linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;animation: gridMove 30s linear infinite;
   }
-  @keyframes gridMove {0% { transform: translateY(0); }100% { transform: translateY(50px); }}
+  @keyframes gridMove {0% { transform: translateY(0); }100% { transform: translateY(60px); }}
   
   #mouse-glow {
-    position: fixed;width: 900px;height: 900px;
-    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 60%);
+    position: fixed;width: 1000px;height: 1000px;
+    background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 60%);
     border-radius: 50%;pointer-events: none;transform: translate(-50%, -50%);z-index: -1;transition: opacity 0.3s;
   }
 
   /* NAV */
   nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
-    padding:1.5rem 6%;background:rgba(5,8,15,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
+    position:fixed;top:35px;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
+    padding:1.2rem 6%;background:rgba(3,5,9,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
   }
-  .logo{font-size:1.7rem;font-weight:900;letter-spacing:-1px;display:flex;align-items:center;gap:10px;}
-  .logo span{color:var(--accent);text-shadow:0 0 20px rgba(59,130,246,1)}
+  .logo{font-size:1.6rem;font-weight:900;letter-spacing:-1px;display:flex;align-items:center;gap:10px;}
+  .logo span{color:var(--accent2);text-shadow:0 0 20px rgba(6,182,212,1)}
   .logo-icon{
-    width:35px;height:35px;background:linear-gradient(135deg, var(--accent), var(--accent2));
-    border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;
-    box-shadow: 0 0 20px rgba(59,130,246,0.6);
+    width:38px;height:38px;background:linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;font-family:monospace;
+    box-shadow: 0 0 20px rgba(37,99,235,0.6);
   }
   nav ul{display:flex;gap:2.5rem;list-style:none;align-items:center}
-  nav a{color:var(--muted);text-decoration:none;font-size:1rem;font-weight:600;transition:.3s}
+  nav a{color:var(--muted);text-decoration:none;font-size:0.95rem;font-weight:600;transition:.3s}
   nav a:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,0.5)}
   .nav-cta{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;padding:.8rem 1.8rem;
-    border-radius:8px;font-weight:900;font-size:.95rem;box-shadow: 0 4px 20px rgba(59,130,246,0.5);transition:.3s;
+    background:#fff;color:#000!important;padding:.7rem 1.6rem;
+    border-radius:8px;font-weight:900;font-size:.9rem;transition:.3s;
   }
-  .nav-cta:hover{transform:translateY(-2px);box-shadow: 0 8px 30px rgba(59,130,246,0.8)}
-  @media(max-width:768px){nav ul{display:none}}
+  .nav-cta:hover{transform:translateY(-2px);box-shadow: 0 5px 20px rgba(255,255,255,0.3)}
+  @media(max-width:768px){nav ul{display:none} .top-bar{font-size:0.7rem}}
 
   /* HERO */
   .hero{
@@ -71,319 +78,320 @@
     padding:12rem 6% 5rem;position:relative;z-index:1;
   }
   .badge{
-    display:inline-flex;align-items:center;gap:.8rem;padding:.8rem 1.8rem;border:1px solid rgba(6,182,212,0.5);
-    border-radius:999px;font-size:.9rem;color:var(--accent2);margin-bottom:3rem;background:rgba(6,182,212,0.1);
-    font-weight:900;letter-spacing:2px;text-transform:uppercase;box-shadow:0 0 30px rgba(6,182,212,0.3);
+    display:inline-flex;align-items:center;gap:.8rem;padding:.6rem 1.4rem;border:1px solid rgba(6,182,212,0.4);
+    border-radius:999px;font-size:.85rem;color:var(--accent2);margin-bottom:2.5rem;background:rgba(6,182,212,0.05);
+    font-weight:800;letter-spacing:2px;text-transform:uppercase;box-shadow:0 0 20px rgba(6,182,212,0.2);
   }
-  .badge .dot{width:10px;height:10px;border-radius:50%;background:var(--accent2);box-shadow:0 0 20px var(--accent2);animation:pulse 1.5s infinite;}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 15px var(--accent2);animation:pulse 1.5s infinite;}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
   
   .hero h1{
-    font-size:clamp(3.5rem,8vw,7rem);font-weight:900;letter-spacing:-4px;line-height:1.05;max-width:1200px;
+    font-size:clamp(3.5rem,8vw,7.5rem);font-weight:900;letter-spacing:-4px;line-height:1;max-width:1300px;
     text-shadow:0 20px 50px rgba(0,0,0,0.8); margin-bottom: 2rem;
   }
   .hero h1 .grad{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 0 30px rgba(59,130,246,0.6));
+    background:linear-gradient(135deg,#fff,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 30px rgba(6,182,212,0.5));
   }
+  .hero p { font-size: 1.2rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; }
   
-  /* SİBER TERMİNAL EFEKTİ */
-  .terminal-box {
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    font-family: 'Courier New', Courier, monospace;
-    text-align: left;
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 3.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(59,130,246,0.1) inset;
-    position: relative;
-  }
-  .terminal-header {
-    display: flex; gap: 8px; margin-bottom: 1rem;
-  }
-  .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
-  .t-red { background: #ef4444; }
-  .t-yellow { background: #facc15; }
-  .t-green { background: #22c55e; }
-  .terminal-text { color: #22c55e; font-size: 1rem; font-weight: bold; }
-  .terminal-text span { color: #fff; }
-  .terminal-cursor {
-    display: inline-block; width: 8px; height: 15px; background: #22c55e;
-    animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 5px;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-
   .btn{
-    display:inline-block;padding:1.2rem 3.5rem;border-radius:12px;font-weight:900;text-decoration:none;transition:.3s;
-    font-size:1.1rem;text-transform:uppercase;letter-spacing:2px;
+    display:inline-block;padding:1.2rem 3rem;border-radius:12px;font-weight:900;text-decoration:none;transition:.3s;
+    font-size:1.1rem;text-transform:uppercase;letter-spacing:1.5px;
   }
   .btn-primary{
     background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
-    box-shadow:0 15px 50px rgba(59,130,246,0.6);border:1px solid rgba(255,255,255,0.3);
+    box-shadow:0 10px 40px rgba(37,99,235,0.5);border:1px solid rgba(255,255,255,0.2);
   }
-  .btn-primary:hover{transform:translateY(-5px) scale(1.05);box-shadow:0 20px 60px rgba(59,130,246,0.9)}
+  .btn-primary:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 15px 50px rgba(37,99,235,0.8)}
 
   /* TEKNOLOJİ ŞERİDİ */
   .tech-strip {
-    width: 100vw;overflow: hidden;background: rgba(13,19,31,0.8);border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);padding: 2rem 0;display: flex;white-space: nowrap;position: relative;z-index: 1;backdrop-filter: blur(10px);
+    width: 100vw;overflow: hidden;background: rgba(13,19,31,0.6);border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);padding: 1.5rem 0;display: flex;white-space: nowrap;position: relative;z-index: 1;backdrop-filter: blur(10px);
   }
-  .tech-track {display: flex;animation: scroll 25s linear infinite;gap: 5rem;align-items: center;padding-left: 5rem;}
-  .tech-track span {font-size: 1.5rem;font-weight: 900;color: rgba(255,255,255,0.2);letter-spacing: 3px;text-transform: uppercase;transition: 0.3s;}
-  .tech-track span:hover { color: var(--accent2); text-shadow:0 0 20px var(--accent2); }
+  .tech-track {display: flex;animation: scroll 30s linear infinite;gap: 4rem;align-items: center;padding-left: 4rem;}
+  .tech-track span {font-size: 1.3rem;font-weight: 900;color: rgba(255,255,255,0.15);letter-spacing: 2px;text-transform: uppercase;transition: 0.3s;}
+  .tech-track span:hover { color: var(--accent2); text-shadow:0 0 15px var(--accent2); }
   @keyframes scroll {0% { transform: translateX(0); }100% { transform: translateX(-50%); }}
 
   /* SECTION */
-  section{padding:8rem 6%;max-width:1400px;margin:0 auto;position:relative;z-index:1}
-  .sec-title{text-align:center;margin-bottom:6rem}
+  section{padding:7rem 6%;max-width:1400px;margin:0 auto;position:relative;z-index:1}
+  .sec-title{text-align:center;margin-bottom:5rem}
   .sec-title h2{
-    font-size:clamp(2.5rem,5vw,4rem);font-weight:900;letter-spacing:-2px;display:inline-block;position:relative;color:#fff;
+    font-size:clamp(2.5rem,5vw,3.5rem);font-weight:900;letter-spacing:-2px;display:inline-block;position:relative;color:#fff;
   }
   .sec-title h2::after{
-    content:'';position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);width:100px;height:5px;
-    background:linear-gradient(90deg, var(--accent), var(--accent2));border-radius:3px;box-shadow:0 0 20px rgba(59,130,246,0.8);
+    content:'';position:absolute;left:50%;bottom:-15px;transform:translateX(-50%);width:80px;height:4px;
+    background:linear-gradient(90deg, var(--accent), var(--accent2));border-radius:2px;box-shadow:0 0 20px rgba(37,99,235,0.8);
   }
-  .sec-title p{color:var(--muted);margin-top:2rem;font-size:1.2rem;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+  .sec-title p{color:var(--muted);margin-top:1.5rem;font-size:1.1rem;letter-spacing:1px;text-transform:uppercase;font-weight:600}
 
-  /* HİZMETLER */
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem}
-  .card{
-    background:var(--card);backdrop-filter: blur(16px);border:1px solid var(--border);border-radius:24px;padding:3rem;
-    transition:.4s;position:relative;overflow:hidden;box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  /* BENTO GRID HİZMETLER */
+  .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  @media(max-width: 1024px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 768px) { .bento-grid { grid-template-columns: 1fr; } }
+  
+  .bento-card {
+    background: var(--card); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: 24px;
+    padding: 3rem; transition: .4s; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end;
   }
-  .card::before{
-    content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-    background:radial-gradient(circle at top right, rgba(59,130,246,0.2), transparent 60%);opacity:0;transition:.4s;
-  }
-  .card:hover{
-    background:var(--card-hover);transform:translateY(-15px);border-color:rgba(59,130,246,0.8);
-    box-shadow:0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(59,130,246,0.2);
-  }
-  .card:hover::before{opacity:1}
-  .card .icon{
-    width:70px;height:70px;border-radius:16px;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;
-    font-size:2rem;margin-bottom:2rem;border:1px solid rgba(59,130,246,0.4);color:var(--accent2);box-shadow:0 0 30px rgba(59,130,246,0.3) inset;
-  }
-  .card h3{font-size:1.5rem;margin-bottom:1rem;letter-spacing:-.5px;font-weight:900;color:#fff}
-  .card p{color:var(--muted);font-size:1.05rem;line-height:1.8}
+  .bento-card:hover { transform: translateY(-5px); border-color: rgba(37,99,235,0.5); background: var(--card-hover); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+  .bento-card.large { grid-column: span 2; }
+  @media(max-width: 1024px) { .bento-card.large { grid-column: span 1; } }
+  
+  .bento-card h3 { font-size: 1.8rem; font-weight: 900; margin-bottom: 1rem; color: #fff; line-height: 1.1; }
+  .bento-card p { color: var(--muted); font-size: 1rem; }
+  .bento-card .icon { font-size: 2.5rem; margin-bottom: auto; margin-top: 2rem; }
 
-  /* PAKETLER / FİYATLANDIRMA */
+  /* SAYAÇLAR */
+  .stats{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;text-align:center;background:var(--card);
+    backdrop-filter: blur(20px);border:1px solid var(--border);border-radius:30px;padding:4rem 2rem;
+  }
+  .stats .num{
+    font-size:4rem;font-weight:900;letter-spacing:-3px;background:linear-gradient(135deg,#fff,var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .stats .lbl{color:var(--muted);font-size:.9rem;margin-top:.5rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+
+  /* PORTFOLYO (KÜÇÜK KARTLAR) */
+  .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+  .portfolio-card{
+    background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:.3s;
+  }
+  .portfolio-card:hover{transform:translateY(-5px);border-color:var(--accent2);}
+  .portfolio-img{height:180px;background:#0f172a;display:flex;align-items:center;justify-content:center;font-size:3rem;}
+  .portfolio-info{padding:1.5rem;}
+  .portfolio-info h3{font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:.5rem}
+  .portfolio-info p{color:var(--muted);font-size:.9rem}
+
+  /* PAKETLER */
   .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
   .price-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 3rem 2rem;
-    text-align: center; transition: .4s; position: relative; backdrop-filter: blur(10px);
+    text-align: center; transition: .4s; position: relative;
   }
-  .price-card:hover { transform: translateY(-10px); border-color: var(--accent2); }
-  .price-card.popular { border-color: var(--accent); box-shadow: 0 0 30px rgba(59,130,246,0.2); }
+  .price-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+  .price-card.popular { border-color: var(--accent2); box-shadow: 0 0 30px rgba(6,182,212,0.15); }
   .price-card.popular::before {
-    content: 'EN ÇOK TERCİH EDİLEN'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-    background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 900; padding: 0.5rem 1rem; border-radius: 20px;
+    content: 'ÖNERİLEN'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    background: var(--accent2); color: #000; font-size: 0.8rem; font-weight: 900; padding: 0.4rem 1rem; border-radius: 20px;
   }
   .price-card h3 { font-size: 1.5rem; color: #fff; margin-bottom: 1rem; }
-  .price-card .price { font-size: 3rem; font-weight: 900; color: var(--accent2); margin-bottom: 2rem; }
-  .price-card .price span { font-size: 1rem; color: var(--muted); font-weight: 500; }
-  .price-features { list-style: none; text-align: left; margin-bottom: 3rem; }
-  .price-features li { padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+  .price-card .price { font-size: 2.5rem; font-weight: 900; color: #fff; margin-bottom: 2rem; }
+  .price-features { list-style: none; text-align: left; margin-bottom: 2rem; }
+  .price-features li { padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--muted); display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; }
   .price-features li::before { content: '✓'; color: var(--accent2); font-weight: bold; }
-  
+
   /* İLETİŞİM */
   .contact{
-    background:linear-gradient(160deg,rgba(13,19,31,0.95),rgba(9,13,22,0.95));backdrop-filter: blur(30px);
-    border:1px solid var(--border);border-radius:40px;padding:7rem 4rem;text-align:center;max-width:1000px;margin:0 auto;
-    position:relative;overflow:hidden;box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    background:linear-gradient(180deg,rgba(13,19,31,0),rgba(37,99,235,0.1));border:1px solid var(--border);border-radius:40px;padding:6rem 2rem;text-align:center;max-width:900px;margin:0 auto;
   }
-  .contact h2{font-size:clamp(2.5rem,5vw,4rem);margin-bottom:1.5rem;letter-spacing:-2px;font-weight:900;color:#fff}
-  .contact p{color:var(--muted);margin-bottom:4rem;max-width:600px;margin-left:auto;margin-right:auto;font-size:1.2rem}
+  .contact h2{font-size:clamp(2.5rem,5vw,4rem);margin-bottom:1rem;letter-spacing:-2px;font-weight:900;color:#fff}
+  .contact p{color:var(--muted);margin-bottom:3rem;font-size:1.1rem}
 
   /* FOOTER */
-  footer{text-align:center;padding:5rem 6%;border-top:1px solid var(--border);color:var(--muted);font-size:1rem;margin-top:6rem;background:rgba(5,8,15,0.9);position:relative;z-index:1;}
+  footer{text-align:center;padding:4rem 6%;border-top:1px solid var(--border);color:var(--muted);font-size:0.9rem;background:rgba(3,5,9,0.9);}
 </style>
 </head>
 <body>
 
+<div class="top-bar">🚀 Yeni projelere açığız! Hemen teklifinizi alın.</div>
 <div class="bg-text">BARIŞ YAZILIM</div>
 <div id="mouse-glow"></div>
 
 <nav>
   <div class="logo">
-    <div class="logo-icon">{ }</div>
+    <div class="logo-icon">&lt;/&gt;</div>
     Barış<span>.</span>Yazılım
   </div>
   <ul>
     <li><a href="#hizmetler">Hizmetler</a></li>
+    <li><a href="#portfolyo">Projeler</a></li>
     <li><a href="#paketler">Paketler</a></li>
-    <li><a href="#surec">Süreç</a></li>
     <li><a href="#iletisim" class="nav-cta">Teklif Al</a></li>
   </ul>
 </nav>
 
 <header class="hero">
-  <span class="badge"><span class="dot"></span> Siber Güvenlik & Yazılım Ajansı</span>
-  <h1>Fikrinizi <span class="grad">çalışan yazılıma</span> dönüştürüyoruz</h1>
-  
-  <!-- SİBER TERMİNAL -->
-  <div class="terminal-box">
-    <div class="terminal-header">
-      <div class="terminal-dot t-red"></div>
-      <div class="terminal-dot t-yellow"></div>
-      <div class="terminal-dot t-green"></div>
-    </div>
-    <div class="terminal-text">
-      > baris_yazilim --init<br>
-      <span>[OK] Sistemler hazır. Siber güvenlik kalkanları aktif.</span><br>
-      > Projenizi inşa etmeye hazırız<span class="terminal-cursor"></span>
-    </div>
-  </div>
-
-  <a href="#iletisim" class="btn btn-primary">Projenizi Konuşalım</a>
+  <span class="badge"><span class="dot"></span> Siber Güvenlik & Yazılım</span>
+  <h1>Dijitalde <span class="grad">sınırları</span> aşıyoruz</h1>
+  <p>Fikrinizi sadece kodlamıyoruz; ölçeklenebilir, güvenli ve geleceğe hazır dijital ürünlere dönüştürüyoruz.</p>
+  <a href="#iletisim" class="btn btn-primary">Projenizi Başlatın</a>
 </header>
 
 <div class="tech-strip">
   <div class="tech-track">
-    <span>React</span><span>Next.js</span><span>Node.js</span><span>Python</span><span>Flutter</span><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>PostgreSQL</span><span>SIEM</span>
-    <span>React</span><span>Next.js</span><span>Node.js</span><span>Python</span><span>Flutter</span><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>PostgreSQL</span><span>SIEM</span>
+    <span>React</span><span>Next.js</span><span>Node.js</span><span>Python</span><span>Flutter</span><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>PostgreSQL</span><span>SIEM</span><span>Cyber Security</span>
+    <span>React</span><span>Next.js</span><span>Node.js</span><span>Python</span><span>Flutter</span><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>PostgreSQL</span><span>SIEM</span><span>Cyber Security</span>
   </div>
 </div>
 
 <section id="hizmetler">
   <div class="sec-title">
-    <h2>Hizmetlerimiz</h2>
-    <p>İhtiyacınıza uygun, ölçeklenebilir çözümler</p>
+    <h2>Neler Yapıyoruz?</h2>
+    <p>Uçtan uca dijital çözümler</p>
   </div>
-  <div class="grid">
-    <div class="card">
-      <div class="icon">🌐</div>
-      <h3>Web Uygulamaları</h3>
-      <p>Kurumsal siteler, e-ticaret ve SaaS platformları. React, Next.js ve Node.js ile hızlı geliştirme.</p>
+  <div class="bento-grid">
+    <div class="bento-card large">
+      <div class="icon">💻</div>
+      <h3>Özel Yazılım Geliştirme</h3>
+      <p>İşinize özel, hızlı ve ölçeklenebilir web uygulamaları. React, Node.js ve Next.js ile modern mimari.</p>
     </div>
-    <div class="card">
+    <div class="bento-card">
+      <div class="icon">🛡️</div>
+      <h3>Siber Güvenlik</h3>
+      <p>Sızma testleri, SIEM ve tehdit avcılığı ile sistemlerinizi koruma altına alıyoruz.</p>
+    </div>
+    <div class="bento-card">
       <div class="icon">📱</div>
-      <h3>Mobil Uygulamalar</h3>
-      <p>iOS ve Android için React Native ve Flutter ile tek kod tabanından native performans.</p>
+      <h3>Mobil Uygulama</h3>
+      <p>iOS ve Android için Flutter ile tek kod tabanından native performans.</p>
     </div>
-    <div class="card">
-      <div class="icon">⚙️</div>
-      <h3>Kurumsal Yazılım</h3>
-      <p>İş süreçlerinize özel CRM, ERP ve otomasyon sistemleri. Mevcut sistemlerle entegre.</p>
-    </div>
-    <div class="card">
-      <div class="icon">🎨</div>
-      <h3>UI/UX Tasarım</h3>
-      <p>Kullanıcı odaklı arayüz tasarımı. Figma ile prototip ve tasarım sistemi kurulumu.</p>
-    </div>
-    <div class="card">
-      <div class="icon">🔒</div>
-      <h3>Siber Güvenlik Danışmanlığı</h3>
-      <p>Güvenlik açığı analizi, SIEM temelleri ve olay müdahale süreçleri. BTK ve IBM sertifikalı uzmanlık.</p>
-    </div>
-    <div class="card">
+    <div class="bento-card large">
       <div class="icon">☁️</div>
-      <h3>Bulut & DevOps</h3>
-      <p>AWS, Docker ve CI/CD ile otomatik dağıtım. Ölçeklenebilir altyapı ve kesintisiz yayın.</p>
+      <h3>Bulut & DevOps Altyapısı</h3>
+      <p>AWS ve Docker ile kesintisiz, ölçeklenebilir sunucu mimarileri kuruyoruz.</p>
     </div>
   </div>
 </section>
 
-<!-- YENİ: PAKETLER -->
+<section>
+  <div class="stats">
+    <div><div class="num" data-target="50">0</div><div class="lbl">Tamamlanan Proje</div></div>
+    <div><div class="num" data-target="100">0</div><div class="lbl">% Müşteri Memnuniyeti</div></div>
+    <div><div class="num" data-target="24">0</div><div class="lbl">Saat Teknik Destek</div></div>
+    <div><div class="num" data-target="5">0</div><div class="lbl">Yıl Tecrübe</div></div>
+  </div>
+</section>
+
+<section id="portfolyo">
+  <div class="sec-title">
+    <h2>Son Projelerimiz</h2>
+    <p>Geliştirdiğimiz bazı başarılı işler</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card">
+      <div class="portfolio-img">🛒</div>
+      <div class="portfolio-info">
+        <h3>E-Ticaret Platformu</h3>
+        <p>Yüksek trafikli, güvenli ödeme altyapısı.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-img">🏦</div>
+      <div class="portfolio-info">
+        <h3>Finans CRM Sistemi</h3>
+        <p>Yapay zeka destekli müşteri yönetimi.</p>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-img">📡</div>
+      <div class="portfolio-info">
+        <h3>Ağ Güvenlik Paneli</h3>
+        <p>Gerçek zamanlı SIEM tehdit izleme.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="paketler">
   <div class="sec-title">
     <h2>Çalışma Paketlerimiz</h2>
-    <p>İhtiyacınıza en uygun modeli seçin</p>
+    <p>Projenizin büyüklüğüne göre seçin</p>
   </div>
   <div class="pricing-grid">
     <div class="price-card">
       <h3>Başlangıç</h3>
-      <div class="price">₺15.000<span>'den başlayan</span></div>
+      <div class="price">₺15K<span style="font-size:1rem;color:var(--muted)">'dan</span></div>
       <ul class="price-features">
-        <li>Kurumsal Tanıtım Sitesi</li>
+        <li>Kurumsal Web Sitesi</li>
         <li>Mobil Uyumlu Tasarım</li>
-        <li>Temel SEO Ayarları</li>
-        <li>3 Ay Teknik Destek</li>
+        <li>Temel SEO</li>
+        <li>3 Ay Destek</li>
       </ul>
-      <a href="#iletisim" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 0.9rem;">Teklif Al</a>
+      <a href="#iletisim" class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">Teklif Al</a>
     </div>
     <div class="price-card popular">
       <h3>Profesyonel</h3>
-      <div class="price">₺45.000<span>'den başlayan</span></div>
+      <div class="price">₺45K<span style="font-size:1rem;color:var(--muted)">'dan</span></div>
       <ul class="price-features">
-        <li>E-Ticaret / Özel Web Yazılımı</li>
+        <li>E-Ticaret / Özel Yazılım</li>
         <li>Gelişmiş Yönetim Paneli</li>
-        <li>Ödeme & Kargo Entegrasyonu</li>
         <li>Siber Güvenlik Taraması</li>
-        <li>6 Ay Teknik Destek</li>
+        <li>6 Ay Destek</li>
       </ul>
-      <a href="#iletisim" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 0.9rem;">Teklif Al</a>
+      <a href="#iletisim" class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">Teklif Al</a>
     </div>
     <div class="price-card">
       <h3>Kurumsal</h3>
-      <div class="price">Özel<span>Fiyatlandırma</span></div>
+      <div class="price">Özel</div>
       <ul class="price-features">
         <li>Mobil Uygulama + Web</li>
-        <li>Özel CRM / ERP Sistemleri</li>
-        <li>Bulut Altyapı Kurulumu (AWS)</li>
-        <li>7/24 Siber Güvenlik İzleme</li>
+        <li>Özel CRM / ERP</li>
+        <li>7/24 İzleme</li>
         <li>Sınırsız Destek</li>
       </ul>
-      <a href="#iletisim" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 0.9rem;">İletişime Geç</a>
-    </div>
-  </div>
-</section>
-
-<section id="surec">
-  <div class="sec-title">
-    <h2>Nasıl Çalışıyoruz?</h2>
-    <p>Şeffaf ve öngörülebilir bir süreç</p>
-  </div>
-  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-    <div class="card" style="padding: 2rem;">
-      <div class="no" style="font-size:2rem; font-weight:900; color:var(--accent); margin-bottom:1rem;">01</div>
-      <h3>Keşif & Analiz</h3>
-      <p>İhtiyaçlarınızı dinliyor, teknik gereksinimleri belirliyoruz.</p>
-    </div>
-    <div class="card" style="padding: 2rem;">
-      <div class="no" style="font-size:2rem; font-weight:900; color:var(--accent); margin-bottom:1rem;">02</div>
-      <h3>Tasarım & Prototip</h3>
-      <p>Onaylı prototip ile beklentileri netleştiriyoruz.</p>
-    </div>
-    <div class="card" style="padding: 2rem;">
-      <div class="no" style="font-size:2rem; font-weight:900; color:var(--accent); margin-bottom:1rem;">03</div>
-      <h3>Geliştirme</h3>
-      <p>Çevik metodoloji ile haftalık demo ve sürekli geri bildirim.</p>
-    </div>
-    <div class="card" style="padding: 2rem;">
-      <div class="no" style="font-size:2rem; font-weight:900; color:var(--accent); margin-bottom:1rem;">04</div>
-      <h3>Test & Yayın</h3>
-      <p>Otomatik testler, performans kontrolü ve canlıya alma.</p>
+      <a href="#iletisim" class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">İletişime Geç</a>
     </div>
   </div>
 </section>
 
 <section id="iletisim">
   <div class="contact">
-    <h2>Projenizi konuşalım</h2>
-    <p>Fikrinizi anlatın, size uygun çözümü ve fiyat teklifini 24 saat içinde sunalım.</p>
+    <h2>Bir fikriniz mi var?</h2>
+    <p>Hemen bize ulaşın, 24 saat içinde size özel bir yol haritası ve teklif çıkaralım.</p>
     <a href="mailto:info@barisyazilim.com" class="btn btn-primary">info@barisyazilim.com</a>
   </div>
 </section>
 
 <footer>
   <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
-    <div class="logo-icon">{ }</div>
+    <div class="logo-icon">&lt;/&gt;</div>
     Barış<span>.</span>Yazılım
   </div>
   <p>© 2026 Barış Yazılım. Tüm hakları saklıdır.</p>
 </footer>
 
 <script>
-  // FARE IŞIĞI
   const glow = document.getElementById('mouse-glow');
   document.addEventListener('mousemove', (e) => {
     glow.style.left = e.clientX + 'px';
     glow.style.top = e.clientY + 'px';
   });
+
+  // Sayaç Animasyonu
+  const counters = document.querySelectorAll('.num');
+  const speed = 50;
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const inc = target / speed;
+        if (count < target) {
+          counter.innerText = Math.ceil(count + inc);
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  };
+
+  let observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        animateCounters();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(document.querySelector('.stats'));
 </script>
 
 </body>
