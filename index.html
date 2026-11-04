@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Barış Yazılım | Kurumsal Yazılım & Siber Güvenlik</title>
-<meta name="description" content="Barış Yazılım - Kurumsal yazılım geliştirme, siber güvenlik danışmanlığı ve bulut çözümleri.">
+
+<!-- SEO ve META ETİKETLERİ -->
+<meta name="description" content="Barış Yazılım - Kurumsal yazılım geliştirme, siber güvenlik danışmanlığı ve bulut çözümleri. İşletmenizi dijital geleceğe taşıyoruz.">
+<meta name="keywords" content="yazılım ajansı, siber güvenlik, web tasarım, özel yazılım, siem, bulut bilişim">
+<meta name="author" content="Hüseyin Barış">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
 
 <style>
@@ -18,26 +22,52 @@
     --accent: #1d4ed8; --accent2: #0891b2; --text: #0f172a;
     --muted: #475569; --border: #e2e8f0; --nav-bg: rgba(248, 250, 252, 0.95);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* 6. Özel İmleç */ }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden;
     transition: background-color 0.4s, color 0.4s; padding-bottom: 70px;
   }
-  .top-bar { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #fff; text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 600; position: fixed; top: 0; width: 100%; z-index: 101; }
+
+  /* 8. SCROLL PROGRESS BAR */
+  #progressBar {
+    position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0%; z-index: 99999; transition: width 0.1s;
+  }
+
+  /* 6. ÖZEL FARE İMLECİ */
+  .cursor-dot, .cursor-outline {
+    position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+    border-radius: 50%; z-index: 99999; pointer-events: none;
+  }
+  .cursor-dot { width: 8px; height: 8px; background: var(--accent2); }
+  .cursor-outline {
+    width: 40px; height: 40px; border: 2px solid var(--accent); transition: width 0.2s, height 0.2s, background 0.2s;
+  }
+  .cursor-outline.hover { width: 60px; height: 60px; background: rgba(59, 130, 246, 0.1); border-color: var(--accent2); }
+  @media (pointer: coarse) { .cursor-dot, .cursor-outline { display: none; } * { cursor: auto; } }
+
+  /* PRELOADER */
   #preloader { position: fixed; inset: 0; background: var(--bg); z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s, visibility 0.5s; }
   #preloader.hidden { opacity: 0; visibility: hidden; }
   .loader-logo { font-size: 2rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 1.5rem; }
   .loader-logo span { color: var(--accent); }
   .loader-bar { width: 250px; height: 2px; background: var(--border); overflow: hidden; }
   .loader-progress { width: 0%; height: 100%; background: var(--accent); transition: width 0.3s; }
+
+  /* MODALLAR */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
   .modal-overlay.active { display: flex; }
   .modal-content { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 3rem; max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; }
   .modal-close { position: absolute; top: 1rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; color: var(--muted); }
   .modal-content h2 { color: var(--text); margin-bottom: 1.5rem; font-size: 1.5rem; }
   .modal-content p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+  .login-form input { width: 100%; padding: 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); margin-bottom: 1rem; }
+  .login-form button { width: 100%; padding: 1rem; background: var(--accent); color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+
+  /* 1. ÇEREZ BANDI */
   #cookieBanner { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem 2rem; width: 90%; max-width: 800px; z-index: 9999; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; box-shadow: 0 10px 40px rgba(0,0,0,0.5); transition: bottom 0.5s ease-in-out; }
   #cookieBanner.show { bottom: 80px; }
   #cookieBanner p { color: var(--muted); font-size: 0.9rem; flex: 1; min-width: 200px; }
@@ -46,6 +76,8 @@
   .cookie-btn { padding: 0.6rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; font-size: 0.9rem; }
   .cookie-btn.accept { background: var(--accent); color: #fff; }
   .cookie-btn.decline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+
+  /* NAV */
   nav { position: fixed; top: 35px; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 8%; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
   .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
   .logo span { color: var(--accent); }
@@ -53,10 +85,16 @@
   nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
   nav a:hover { color: var(--text); }
   .nav-controls { display: flex; gap: 1rem; align-items: center; }
+  /* 3. DİL DEĞİŞTİRİCİ */
   .lang-switch { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
   .theme-toggle { background: var(--card); border: 1px solid var(--border); color: var(--text); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  /* 2. MÜŞTERİ GİRİŞİ */
+  .login-btn { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem; }
+  .login-btn:hover { border-color: var(--accent); color: var(--accent); }
   .nav-cta { background: var(--accent); color: #fff !important; padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
   @media(max-width: 768px) { nav ul { display: none; } }
+
+  /* HERO */
   .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 12rem 8% 6rem; border-bottom: 1px solid var(--border); margin-top: 70px; }
   .hero-content { max-width: 900px; }
   .hero-tag { display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 4px; font-size: 0.85rem; color: var(--accent); font-weight: 700; letter-spacing: 1px; margin-bottom: 2rem; text-transform: uppercase; }
@@ -65,21 +103,35 @@
   .live-dashboard { display: flex; gap: 1.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
   .live-item { display: flex; align-items: center; gap: 0.5rem; background: rgba(59, 130, 246, 0.1); padding: 0.5rem 1rem; border-radius: 50px; border: 1px solid rgba(59, 130, 246, 0.2); font-size: 0.9rem; color: var(--text); }
   .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 10px #22c55e; animation: pulse 1.5s infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-  .btn { display: inline-block; padding: 1rem 2.5rem; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 1rem; cursor: pointer; border: none; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.8); } }
+
+  .btn { display: inline-block; padding: 1rem 2.5rem; border-radius: 6px; font-weight: 600; text-decoration: none; transition: 0.3s; font-size: 1rem; cursor: pointer; border: none; }
   .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #2563eb; }
   .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); margin-left: 1rem; }
+  .btn-outline:hover { border-color: var(--text); }
+
+  /* SECTION */
   section { padding: 7rem 8%; max-width: 1300px; margin: 0 auto; }
   .bg-section { background: var(--card); max-width: 100%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .bg-section .inner { max-width: 1300px; margin: 0 auto; padding: 7rem 8%; }
   .sec-header { margin-bottom: 4rem; }
   .sec-header h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; }
   .sec-header p { color: var(--muted); font-size: 1.1rem; max-width: 600px; }
+
+  /* HİZMETLER */
   .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-  .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 3rem 2rem; }
+  .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 3rem 2rem; transition: 0.3s; }
+  .service-card:hover { border-color: var(--accent); background: var(--card-hover); transform: translateY(-5px); }
   .service-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--accent); }
   .service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
   .service-card p { color: var(--muted); font-size: 0.95rem; }
+
+  /* 5. CANLI PROJE AKIŞI */
+  .live-feed { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; font-size: 0.9rem; color: var(--muted); }
+  .live-feed span { color: var(--accent); font-weight: 600; }
+
+  /* KURUCU & PRENSİPLER */
   .founder-card { display: flex; gap: 3rem; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 4rem; }
   .founder-avatar { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 4rem; font-weight: 800; color: #fff; flex-shrink: 0; }
   .founder-info h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
@@ -89,27 +141,40 @@
   .founder-skills span { background: var(--bg); border: 1px solid var(--border); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; color: var(--text); }
   .cert-badges { display: flex; gap: 1rem; flex-wrap: wrap; }
   .cert-badge { display: flex; align-items: center; gap: 0.5rem; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+  @media(max-width: 768px) { .founder-card { flex-direction: column; text-align: center; padding: 2rem; } .founder-skills, .cert-badges { justify-content: center; } }
   .principles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
   .principle-item { display: flex; align-items: flex-start; gap: 1rem; background: var(--bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
   .principle-icon { color: var(--accent); font-size: 1.5rem; }
   .principle-text h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
   .principle-text p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+
+  /* 4. VAKA ANALİZLERİ */
   .case-grid { display: flex; flex-direction: column; gap: 2rem; }
-  .case-card { display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; cursor: pointer; }
+  .case-card { display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: 0.3s; cursor: pointer; }
+  .case-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
   .case-content { padding: 3rem; flex: 1; }
   .case-content h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
   .case-content p { color: var(--muted); margin-bottom: 1.5rem; }
   .case-results { display: flex; gap: 2rem; margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
   .case-result-item { display: flex; flex-direction: column; }
   .case-result-item strong { color: var(--accent); font-size: 1.5rem; }
-  .case-result-item span { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; }
+  .case-result-item span { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+  .case-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-weight: 600; margin-top: 1rem; }
+
+  /* SSS */
   .faq-container { max-width: 800px; margin: 0 auto; }
   .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; }
-  .faq-question { padding: 1.5rem; font-size: 1.1rem; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-question { padding: 1.5rem; font-size: 1.1rem; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+  .faq-question:hover { background: var(--card-hover); }
   .faq-answer { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; color: var(--muted); }
   .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.5rem; }
+  .faq-item.active .faq-question span { transform: rotate(45deg); color: var(--accent); }
+  .faq-question span { font-size: 1.5rem; transition: transform 0.3s; }
+
+  /* PAKETLER */
   .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-  .price-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 3rem; display: flex; flex-direction: column; position: relative; }
+  .price-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 3rem; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
+  .price-card:hover { border-color: var(--accent); transform: translateY(-5px); }
   .price-card.popular { border-color: var(--accent); }
   .popular-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
   .price-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
@@ -118,6 +183,8 @@
   .price-features { list-style: none; flex: 1; margin-bottom: 2rem; }
   .price-features li { color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
   .price-features li::before { content: '✓'; color: var(--accent); font-weight: bold; }
+
+  /* İLETİŞİM & 7. RANDEVU */
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
   @media(max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
   .contact-info h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; }
@@ -127,51 +194,89 @@
   .contact-item p { color: var(--accent); font-size: 1.1rem; font-weight: 600; margin: 0; }
   .form-group { margin-bottom: 1.5rem; }
   .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
-  .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: inherit; font-size: 1rem; }
-  .calendar-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 1rem; }
-  .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); padding: 1rem 8%; display: flex; justify-content: space-between; align-items: center; z-index: 90; transform: translateY(100%); transition: transform 0.3s; }
+  .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: inherit; font-size: 1rem; transition: 0.3s; }
+  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+  .calendar-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 1rem; transition: 0.3s; }
+  .calendar-btn:hover { background: rgba(59, 130, 246, 0.1); }
+
+  /* STICKY BAR */
+  .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); padding: 1rem 8%; display: flex; justify-content: space-between; align-items: center; z-index: 90; transform: translateY(100%); transition: transform 0.3s; box-shadow: 0 -10px 30px rgba(0,0,0,0.3); }
   .sticky-bar.show { transform: translateY(0); }
   .sticky-bar p { color: var(--text); font-weight: 600; margin: 0; }
+  .sticky-bar .btn { padding: 0.6rem 1.5rem; font-size: 0.9rem; }
+  @media(max-width: 768px) { .sticky-bar { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1rem; } }
+
+  /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 4rem 8% 2rem; background: var(--bg); }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
   @media(max-width: 768px) { .footer-grid { grid-template-columns: 1fr; } }
   .footer-col h4 { color: var(--text); font-size: 1rem; margin-bottom: 1.5rem; }
   .footer-col ul { list-style: none; }
   .footer-col ul li { margin-bottom: 0.8rem; }
-  .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.9rem; cursor: pointer; }
-  .footer-col p { color: var(--muted); font-size: 0.9rem; }
-  .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer; }
+  .footer-col ul li a:hover { color: var(--accent); }
+  .footer-col p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
   .footer-bottom p { color: var(--muted); font-size: 0.85rem; }
+
+  /* VAKA DETAY MODAL */
+  #caseModal .modal-content { max-width: 700px; }
+  .modal-tech-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; margin-bottom: 1.5rem; }
+  .modal-tech-tags span { background: var(--bg); border: 1px solid var(--border); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; color: var(--accent); }
 </style>
 </head>
 <body>
 
-<div class="top-bar">🚀 15+ Kurumsal Proje Tamamlandı | 7/24 Siber Güvenlik Desteği | NDA Garantisi</div>
+<!-- 8. SCROLL PROGRESS -->
+<div id="progressBar"></div>
+
+<!-- 6. ÖZEL İMLEC -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-outline" id="cursorOutline"></div>
 
 <div id="preloader">
   <div class="loader-logo">BARIŞ<span>.</span>YAZILIM</div>
   <div class="loader-bar"><div class="loader-progress" id="loaderProgress"></div></div>
 </div>
 
+<!-- 1. YASAL MODAL -->
 <div class="modal-overlay" id="legalModal">
   <div class="modal-content">
-    <span class="modal-close" onclick="document.getElementById('legalModal').classList.remove('active')">×</span>
+    <span class="modal-close" onclick="closeModal('legalModal')">×</span>
     <h2 id="modalTitle">Başlık</h2>
     <div id="modalText"></div>
   </div>
 </div>
 
-<div class="modal-overlay" id="caseModal">
-  <div class="modal-content">
-    <span class="modal-close" onclick="document.getElementById('caseModal').classList.remove('active')">×</span>
-    <h2 id="caseModalTitle"></h2>
-    <p id="caseModalText"></p>
-    <a href="#iletisim" class="btn btn-primary" style="width: 100%; text-align: center;" onclick="document.getElementById('caseModal').classList.remove('active')">Benzer Bir Proje İstiyorum</a>
+<!-- 2. MÜŞTERİ GİRİŞ PANELİ -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-content" style="max-width: 400px;">
+    <span class="modal-close" onclick="closeModal('loginModal')">×</span>
+    <h2 style="text-align: center;">Müşteri Girişi</h2>
+    <p style="text-align: center; margin-bottom: 2rem; font-size: 0.9rem;">Projenizi takip etmek için giriş yapın.</p>
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Giriş simülasyonu: Bu panel gerçekte aktif değildir.'); closeModal('loginModal');">
+      <input type="email" placeholder="E-posta Adresiniz" required>
+      <input type="password" placeholder="Şifreniz" required>
+      <button type="submit">Giriş Yap</button>
+    </form>
   </div>
 </div>
 
+<!-- 4. VAKA MODAL -->
+<div class="modal-overlay" id="caseModal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal('caseModal')">×</span>
+    <h2 id="caseModalTitle"></h2>
+    <p id="caseModalText"></p>
+    <div class="modal-tech-tags" id="caseModalTags"></div>
+    <a href="#iletisim" class="btn btn-primary" style="width: 100%; text-align: center;" onclick="closeModal('caseModal')">Benzer Bir Proje İstiyorum</a>
+  </div>
+</div>
+
+<!-- 1. ÇEREZ BANDI -->
 <div id="cookieBanner">
-  <p>Size daha iyi bir deneyim sunabilmek için çerezler kullanıyoruz. <a onclick="document.getElementById('legalModal').classList.add('active'); document.getElementById('modalTitle').innerText='Çerez Politikası'; document.getElementById('modalText').innerHTML='<p>Sitemizde deneyiminizi iyileştirmek için çerezler kullanılmaktadır.</p>';">Çerez Politikamızı</a> kabul etmiş olursunuz.</p>
+  <p>Size daha iyi bir deneyim sunabilmek için çerezler kullanıyoruz. <a onclick="openModal('cerez')">Çerez Politikamızı</a> kabul etmiş olursunuz.</p>
   <div class="cookie-btns">
     <button class="cookie-btn decline" onclick="closeCookie()">Reddet</button>
     <button class="cookie-btn accept" onclick="closeCookie()">Kabul Et</button>
@@ -188,46 +293,59 @@
     <li><a href="#iletisim" class="nav-cta">Teklif Al</a></li>
   </ul>
   <div class="nav-controls">
+    <button class="lang-switch" id="langSwitch">EN</button>
     <button class="theme-toggle" id="themeToggle" title="Tema Değiştir">🌙</button>
+    <button class="login-btn" onclick="openModal('login')" title="Müşteri Girişi">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+    </button>
   </div>
 </nav>
 
 <header class="hero">
   <div class="hero-content">
-    <div class="hero-tag">Butik Yazılım & Siber Güvenlik</div>
-    <h1>İşletmeniz için güvenli, ölçeklenebilir ve geleceğe hazır yazılım çözümleri.</h1>
-    <p>Sadece kod yazmıyoruz; iş süreçlerinizi analiz ediyor, dijital altyapınızı güvenli hale getiriyor ve operasyonel verimliliğinizi artıracak sistemler inşa ediyoruz.</p>
+    <div class="hero-tag" data-lang="hero-tag">Butik Yazılım & Siber Güvenlik</div>
+    <h1 data-lang="hero-h1">İşletmeniz için güvenli, ölçeklenebilir ve geleceğe hazır yazılım çözümleri.</h1>
+    <p data-lang="hero-p">Sadece kod yazmıyoruz; iş süreçlerinizi analiz ediyor, dijital altyapınızı güvenli hale getiriyor ve operasyonel verimliliğinizi artıracak sistemler inşa ediyoruz.</p>
     
     <div class="live-dashboard">
       <div class="live-item"><div class="live-dot"></div> Sistemler Aktif</div>
       <div class="live-item"><div class="live-dot"></div> Ort. Yanıt: 1 Saat</div>
+      <div class="live-item"><div class="live-dot"></div> 3 Proje Geliştiriliyor</div>
     </div>
 
-    <a href="#iletisim" class="btn btn-primary">Teklif Talep Edin</a>
-    <a href="#vakalar" class="btn btn-outline">Vakaları İnceleyin</a>
+    <a href="#iletisim" class="btn btn-primary" data-lang="hero-btn1" onclick="playClickSound()">Teklif Talep Edin</a>
+    <a href="#vakalar" class="btn btn-outline" data-lang="hero-btn2" onclick="playClickSound()">Vakaları İnceleyin</a>
   </div>
 </header>
 
+<!-- 5. CANLI AKIŞ -->
+<section style="padding-top: 2rem; padding-bottom: 0;">
+  <div class="live-feed">
+    <div class="live-dot"></div>
+    <p style="margin:0;">Son Teslim Edilen Proje: <span>E-Ticaret Platformu</span> (2 saat önce) | Yeni Siber Güvenlik Taraması Tamamlandı (5 saat önce)</p>
+  </div>
+</section>
+
 <section id="hizmetler">
   <div class="sec-header">
-    <h2>Uzmanlık Alanlarımız</h2>
-    <p>Uçtan uca yazılım geliştirme ve siber güvenlik süreçleriyle işletmenizi bir üst seviyeye taşıyoruz.</p>
+    <h2 data-lang="srv-title">Uzmanlık Alanlarımız</h2>
+    <p data-lang="srv-p">Uçtan uca yazılım geliştirme ve siber güvenlik süreçleriyle işletmenizi bir üst seviyeye taşıyoruz.</p>
   </div>
   <div class="services-grid">
     <div class="service-card">
       <div class="service-icon">💻</div>
-      <h3>Özel Yazılım Geliştirme</h3>
-      <p>İşinize özel CRM, ERP ve kurumsal web uygulamaları. Ölçeklenebilir mimariler ile hızlı ve güvenilir performans.</p>
+      <h3 data-lang="srv1-title">Özel Yazılım Geliştirme</h3>
+      <p data-lang="srv1-p">İşinize özel CRM, ERP ve kurumsal web uygulamaları. Ölçeklenebilir mimariler ile hızlı ve güvenilir performans.</p>
     </div>
     <div class="service-card">
       <div class="service-icon">🛡️</div>
-      <h3>Siber Güvenlik Danışmanlığı</h3>
-      <p>Sızma testleri, güvenlik açığı analizleri ve SIEM çözümleri ile verilerinizi ve sistemlerinizi koruma altına alıyoruz.</p>
+      <h3 data-lang="srv2-title">Siber Güvenlik Danışmanlığı</h3>
+      <p data-lang="srv2-p">Sızma testleri, güvenlik açığı analizleri ve SIEM çözümleri ile verilerinizi ve sistemlerinizi koruma altına alıyoruz.</p>
     </div>
     <div class="service-card">
       <div class="service-icon">☁️</div>
-      <h3>Bulut & DevOps Altyapısı</h3>
-      <p>AWS ve Docker mimarileri ile CI/CD süreçleri kuruyor, sistemlerinizi kesintisiz ve yüksek erişilebilir hale getiriyoruz.</p>
+      <h3 data-lang="srv3-title">Bulut & DevOps Altyapısı</h3>
+      <p data-lang="srv3-p">AWS ve Docker mimarileri ile CI/CD süreçleri kuruyor, sistemlerinizi kesintisiz ve yüksek erişilebilir hale getiriyoruz.</p>
     </div>
   </div>
 </section>
@@ -238,18 +356,18 @@
       <div class="founder-avatar">HB</div>
       <div class="founder-info">
         <h3>Hüseyin Barış</h3>
-        <div class="title">Kurucu & Baş Yazılım Mühendisi</div>
-        <p>BTK ve IBM sertifikalı siber güvenlik uzmanı. 5 yılı aşkın süredir kurumsal yazılım geliştirme ve güvenlik alanında butik çözümler üretiyorum. Her projede doğrudan ben yer alıyor, işinizi bir teknoloji ortağı gibi sahipleniyorum.</p>
-        
+        <div class="title" data-lang="founder-title">Kurucu & Baş Yazılım Mühendisi</div>
+        <p data-lang="founder-p">BTK ve IBM sertifikalı siber güvenlik uzmanı. 5 yılı aşkın süredir kurumsal yazılım geliştirme ve güvenlik alanında butik çözümler üretiyorum. Her projede doğrudan ben yer alıyor, işinizi bir teknoloji ortağı gibi sahipleniyorum.</p>
         <div class="founder-skills">
           <span>React & Node.js</span>
-          <span>Siber Güvenlik</span>
+          <span>Siber Güvenlik (SIEM)</span>
           <span>AWS & DevOps</span>
+          <span>Python</span>
         </div>
-
         <div class="cert-badges">
           <div class="cert-badge">🛡️ BTK Siber Güvenlik</div>
           <div class="cert-badge">🔐 IBM Cybersecurity</div>
+          <div class="cert-badge">🌐 Cisco Networking</div>
         </div>
       </div>
     </div>
@@ -257,24 +375,15 @@
     <div class="principles-grid">
       <div class="principle-item">
         <div class="principle-icon">🛡️</div>
-        <div class="principle-text">
-          <h4>Gizlilik (NDA)</h4>
-          <p>Tüm projelerimiz karşılıklı gizlilik sözleşmesi ile başlar.</p>
-        </div>
+        <div class="principle-text"><h4>Gizlilik (NDA)</h4><p>Tüm projelerimiz karşılıklı gizlilik sözleşmesi ile başlar.</p></div>
       </div>
       <div class="principle-item">
         <div class="principle-icon">📊</div>
-        <div class="principle-text">
-          <h4>Şeffaflık</h4>
-          <p>Süreç boyunca haftalık raporlama ile ilerleriz.</p>
-        </div>
+        <div class="principle-text"><h4>Şeffaflık</h4><p>Süreç boyunca haftalık raporlama ve şeffaf fiyatlandırma ile ilerleriz.</p></div>
       </div>
       <div class="principle-item">
         <div class="principle-icon">⏱️</div>
-        <div class="principle-text">
-          <h4>Zamanında Teslim</h4>
-          <p>Proje takvimine sıkı sıkıya bağlıyız.</p>
-        </div>
+        <div class="principle-text"><h4>Zamanında Teslim</h4><p>Proje takvimine sıkı sıkıya bağlıyız. Gecikmeleri önceden öngörüp önlem alırız.</p></div>
       </div>
     </div>
   </div>
@@ -282,18 +391,19 @@
 
 <section id="vakalar">
   <div class="sec-header">
-    <h2>Vaka Analizleri</h2>
-    <p>Müşterilerimizin karşılaştığı zorlukları nasıl çözdüğümüzü inceleyin.</p>
+    <h2 data-lang="case-title">Vaka Analizleri</h2>
+    <p data-lang="case-p">Müşterilerimizin karşılaştığı zorlukları nasıl çözdüğümüzü ve elde ettiğimiz somut sonuçları inceleyin.</p>
   </div>
   <div class="case-grid">
-    <div class="case-card" onclick="document.getElementById('caseModalTitle').innerText='Finans Sektöründe Dijital Dönüşüm'; document.getElementById('caseModalText').innerText='Manuel kredi onay süreçlerindeki gecikmeleri, özel CRM ve SIEM güvenlik katmanı ile çözdük.'; document.getElementById('caseModal').classList.add('active');">
+    <div class="case-card" onclick="openCaseModal('Finans Sektöründe Dijital Dönüşüm', 'Müşterimiz, manuel yürütülen kredi onay süreçlerindeki gecikmeler ve veri güvenliği endişeleriyle karşı karşıyaydı. Özel geliştirdiğimiz CRM yazılımı ve entegre SIEM güvenlik katmanı ile süreçleri tamamen otomatize ettik.', ['React', 'Node.js', 'PostgreSQL', 'SIEM']); playClickSound();">
       <div class="case-content">
-        <h3>Finans Sektöründe Dijital Dönüşüm</h3>
-        <p>Sorun: Manuel süreçler ve güvenlik endişeleri. Çözüm: Özel CRM ve entegre SIEM katmanı.</p>
+        <h3 data-lang="case1-title">Finans Sektöründe Dijital Dönüşüm</h3>
+        <p data-lang="case1-p"><strong>Sorun:</strong> Manuel kredi onay süreçlerindeki gecikmeler ve veri güvenliği endişeleri.<br><br><strong>Çözüm:</strong> Özel CRM ve entegre SIEM güvenlik katmanı ile tam otomasyon.</p>
         <div class="case-results">
-          <div class="case-result-item"><strong>%40</strong><span>Operasyonel Hız</span></div>
-          <div class="case-result-item"><strong>0</strong><span>Güvenlik İhlali</span></div>
+          <div class="case-result-item"><strong>%40</strong><span data-lang="case1-res1">Operasyonel Hız</span></div>
+          <div class="case-result-item"><strong>0</strong><span data-lang="case1-res2">Güvenlik İhlali</span></div>
         </div>
+        <div class="case-link">Detayları İncele →</div>
       </div>
     </div>
   </div>
@@ -302,16 +412,17 @@
 <section id="sss" class="bg-section">
   <div class="inner">
     <div class="sec-header">
-      <h2>Sıkça Sorulan Sorular</h2>
+      <h2 data-lang="sss-title">Sıkça Sorulan Sorular</h2>
+      <p data-lang="sss-p">Aklınızdaki soru işaretlerini silelim.</p>
     </div>
     <div class="faq-container">
       <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">Ödeme koşulları nasıl işliyor? <span>+</span></div>
-        <div class="faq-answer"><p>Projelerimiz 3 aşamalı ödeme planı ile yürütülür. Tüm ödemeler sözleşmeye bağlıdır.</p></div>
+        <div class="faq-question" data-lang="sss1-q" onclick="this.parentElement.classList.toggle('active'); playClickSound();">Ödeme koşulları nasıl işliyor? <span>+</span></div>
+        <div class="faq-answer" data-lang="sss1-a"><p>Projelerimiz genellikle 3 aşamalı ödeme planı ile yürütülür: Başlangıç (Proje başlangıcı), Kilometre Taşı (Prototip teslimi) ve Kapanış (Nihai teslim). Tüm ödemeler sözleşmeye bağlıdır.</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">Kaynak kodların mülkiyeti kime ait? <span>+</span></div>
-        <div class="faq-answer"><p>Proje teslimi sonrası tüm kaynak kodları ve fikri mülkiyet hakları size aittir.</p></div>
+        <div class="faq-question" data-lang="sss2-q" onclick="this.parentElement.classList.toggle('active'); playClickSound();">Kaynak kodların mülkiyeti kime ait olacak? <span>+</span></div>
+        <div class="faq-answer" data-lang="sss2-a"><p>Proje teslimi ve son ödeme tamamlandıktan sonra, tüm kaynak kodları ve fikri mülkiyet hakları tamamen size aittir.</p></div>
       </div>
     </div>
   </div>
@@ -319,29 +430,33 @@
 
 <section id="paketler">
   <div class="sec-header">
-    <h2>Çalışma Paketlerimiz</h2>
+    <h2 data-lang="pkg-title">Çalışma Paketlerimiz</h2>
+    <p data-lang="pkg-p">İhtiyacınıza ve projenizin kapsamına en uygun modeli seçin.</p>
   </div>
   <div class="pricing-grid">
     <div class="price-card">
-      <h3>Başlangıç</h3>
-      <div class="price-amount">₺25.000<span>'den</span></div>
+      <h3 data-lang="pkg1-title">Başlangıç</h3>
+      <div class="price-amount">₺25.000<span data-lang="pkg1-sub">'den başlayan</span></div>
       <ul class="price-features">
-        <li>Kurumsal Tanıtım Sitesi</li>
-        <li>Mobil Uyumlu Tasarım</li>
-        <li>3 Ay Teknik Destek</li>
+        <li data-lang="pkg1-f1">Kurumsal Tanıtım Sitesi</li>
+        <li data-lang="pkg1-f2">Mobil Uyumlu Tasarım</li>
+        <li data-lang="pkg1-f3">Temel SEO Ayarları</li>
+        <li data-lang="pkg1-f4">3 Ay Teknik Destek</li>
       </ul>
-      <a href="#iletisim" class="btn btn-primary" style="text-align:center;">Teklif Al</a>
+      <a href="#iletisim" class="btn btn-primary" style="text-align:center;" data-lang="pkg-btn" onclick="playClickSound()">Teklif Al</a>
     </div>
     <div class="price-card popular">
-      <div class="popular-badge">EN ÇOK TERCİH EDİLEN</div>
-      <h3>Profesyonel</h3>
-      <div class="price-amount">₺60.000<span>'den</span></div>
+      <div class="popular-badge" data-lang="pkg-popular">EN ÇOK TERCİH EDİLEN</div>
+      <h3 data-lang="pkg2-title">Profesyonel</h3>
+      <div class="price-amount">₺60.000<span data-lang="pkg2-sub">'den başlayan</span></div>
       <ul class="price-features">
-        <li>E-Ticaret / Özel Web Yazılımı</li>
-        <li>Siber Güvenlik Taraması</li>
-        <li>6 Ay Teknik Destek</li>
+        <li data-lang="pkg2-f1">E-Ticaret / Özel Web Yazılımı</li>
+        <li data-lang="pkg2-f2">Gelişmiş Yönetim Paneli</li>
+        <li data-lang="pkg2-f3">Ödeme & API Entegrasyonları</li>
+        <li data-lang="pkg2-f4">Siber Güvenlik Taraması</li>
+        <li data-lang="pkg2-f5">6 Ay Teknik Destek</li>
       </ul>
-      <a href="#iletisim" class="btn btn-primary" style="text-align:center;">Teklif Al</a>
+      <a href="#iletisim" class="btn btn-primary" style="text-align:center;" data-lang="pkg-btn" onclick="playClickSound()">Teklif Al</a>
     </div>
   </div>
 </section>
@@ -349,29 +464,40 @@
 <section id="iletisim" style="border-top: 1px solid var(--border);">
   <div class="contact-grid">
     <div class="contact-info">
-      <h2>Projenizi Konuşalım</h2>
-      <p>Formu doldurun veya doğrudan bir görüşme planlayın.</p>
+      <h2 data-lang="contact-title">Projenizi Konuşalım</h2>
+      <p data-lang="contact-p">İşletmenizin ihtiyaçlarını analiz edip, en verimli ve güvenli yazılım çözümünü sunmak için buradayız. Formu doldurun veya doğrudan bir görüşme planlayın.</p>
       <div class="contact-item">
-        <h4>E-posta</h4>
+        <h4 data-lang="contact-email">E-posta</h4>
         <p>hsynnbrs63.47@gmail.com</p>
       </div>
+      <div class="contact-item">
+        <h4 data-lang="contact-model">Çalışma Modeli</h4>
+        <p data-lang="contact-model-p">Online / Uzaktan</p>
+      </div>
     </div>
+
     <div>
       <form class="contact-form" action="mailto:hsynnbrs63.47@gmail.com" method="post" enctype="text/plain">
         <div class="form-group">
-          <label>Adınız Soyadınız</label>
-          <input type="text" name="Ad" required>
+          <label data-lang="form-name">Adınız Soyadınız</label>
+          <input type="text" name="Ad" placeholder="Adınızı ve soyadınızı girin" required>
         </div>
         <div class="form-group">
-          <label>E-posta Adresiniz</label>
-          <input type="email" name="Eposta" required>
+          <label data-lang="form-email">Kurumsal E-posta Adresiniz</label>
+          <input type="email" name="Eposta" placeholder="ornek@sirket.com" required>
         </div>
         <div class="form-group">
-          <label>Projeniz Hakkında</label>
-          <textarea name="Mesaj" required></textarea>
+          <label data-lang="form-msg">Projenizin Detayları</label>
+          <textarea name="Mesaj" placeholder="Projenizin kapsamı, hedefleriniz ve varsa bütçeniz hakkında bilgi verin..." required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Teklif Talebi Gönder</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%;" data-lang="form-btn" onclick="playClickSound()">Teklif Talebi Gönder</button>
       </form>
+      
+      <!-- 7. RANDEVU BUTONU -->
+      <button class="calendar-btn" onclick="alert('Takvim entegrasyonu için Calendly veya Cal.com linkinizi buraya ekleyebilirsiniz.'); playClickSound();">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        <span data-lang="calendar-btn">15 Dakikalık Ön Görüşme Planla</span>
+      </button>
     </div>
   </div>
 </section>
@@ -379,35 +505,63 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
-      <div class="logo">Barış<span>.</span>Yazılım</div>
-      <p>Butik yazılım geliştirme ve siber güvenlik ajansı.</p>
+      <div class="logo" style="font-size: 1.5rem; margin-bottom: 1rem;">Barış<span>.</span>Yazılım</div>
+      <p data-lang="footer-p">Butik yazılım geliştirme ve siber güvenlik alanında uzmanlaşmış bir teknoloji ajansı.</p>
     </div>
     <div class="footer-col">
-      <h4>Hizmetler</h4>
+      <h4 data-lang="footer-srv">Hizmetler</h4>
       <ul>
-        <li><a href="#hizmetler">Özel Yazılım</a></li>
-        <li><a href="#hizmetler">Siber Güvenlik</a></li>
+        <li><a href="#hizmetler" data-lang="footer-srv1">Özel Yazılım Geliştirme</a></li>
+        <li><a href="#hizmetler" data-lang="footer-srv2">Siber Güvenlik</a></li>
+        <li><a href="#hizmetler" data-lang="footer-srv3">Bulut & DevOps</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Kurumsal</h4>
+      <h4 data-lang="footer-corp">Kurumsal</h4>
       <ul>
-        <li><a href="#kurucu">Hakkımızda</a></li>
-        <li><a href="#vakalar">Vakalar</a></li>
+        <li><a href="#kurucu" data-lang="footer-corp1">Hakkımızda</a></li>
+        <li><a href="#vakalar" data-lang="footer-corp2">Vaka Analizleri</a></li>
+        <li><a href="#paketler" data-lang="footer-corp3">Paketler</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-lang="footer-legal">Yasal</h4>
+      <ul>
+        <li><a onclick="openModal('gizlilik')" data-lang="footer-legal1">Gizlilik Politikası</a></li>
+        <li><a onclick="openModal('kvkk')" data-lang="footer-legal2">KVKK Aydınlatma Metni</a></li>
+        <li><a onclick="openModal('cerez')" data-lang="footer-legal3">Çerez Politikası</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Barış Yazılım. Tüm hakları saklıdır.</p>
+    <p data-lang="footer-copy">© 2026 Barış Yazılım. Tüm hakları saklıdır.</p>
   </div>
 </footer>
 
 <div class="sticky-bar" id="stickyBar">
   <p>Aklınızda bir proje mi var? Hemen konuşalım.</p>
-  <a href="#iletisim" class="btn btn-primary">Hemen Teklif Al</a>
+  <a href="#iletisim" class="btn btn-primary" onclick="playClickSound()">Hemen Teklif Al</a>
 </div>
 
 <script>
+  // 9. SES EFEKTİ (Tıklama)
+  function playClickSound() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+      gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.1);
+    } catch(e) { console.log("Ses desteklenmiyor."); }
+  }
+
+  // PRELOADER
   window.addEventListener('load', () => {
     const loaderProgress = document.getElementById('loaderProgress');
     let width = 0;
@@ -429,22 +583,110 @@
     }, 30);
   });
 
+  // MODAL SİSTEMİ
+  const modalContent = {
+    'gizlilik': { title: 'Gizlilik Politikası', text: '<p>Barış Yazılım olarak kişisel verilerinizin güvenliğine önem veriyoruz...</p>' },
+    'kvkk': { title: 'KVKK Aydınlatma Metni', text: '<p>6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca...</p>' },
+    'cerez': { title: 'Çerez Politikası', text: '<p>Sitemizde, deneyiminizi iyileştirmek amacıyla çerezler kullanılmaktadır...</p>' }
+  };
+  
+  function openModal(type) {
+    if(type === 'login') {
+      document.getElementById('loginModal').classList.add('active');
+      return;
+    }
+    const data = modalContent[type];
+    document.getElementById('modalTitle').innerText = data.title;
+    document.getElementById('modalText').innerHTML = data.text;
+    document.getElementById('legalModal').classList.add('active');
+    playClickSound();
+  }
+  
+  function openCaseModal(title, text, tags) {
+    document.getElementById('caseModalTitle').innerText = title;
+    document.getElementById('caseModalText').innerText = text;
+    const tagContainer = document.getElementById('caseModalTags');
+    tagContainer.innerHTML = tags.map(t => `<span>${t}</span>`).join('');
+    document.getElementById('caseModal').classList.add('active');
+  }
+  
+  function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+  
   function closeCookie() {
     document.getElementById('cookieBanner').classList.remove('show');
     localStorage.setItem('cookieAccepted', 'true');
   }
 
+  // TEMA DEĞİŞTİRİCİ
   const themeToggle = document.getElementById('themeToggle');
   themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
     if(document.body.classList.contains('light-mode')) { themeToggle.textContent = '☀️'; }
     else { themeToggle.textContent = '🌙'; }
+    playClickSound();
   });
 
-  window.addEventListener('scroll', () => {
+  // SSS AKORDEON
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+
+  // 8. SCROLL PROGRESS BAR & STICKY BAR
+  window.onscroll = function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    document.getElementById("progressBar").style.width = scrolled + "%";
+    
     const stickyBar = document.getElementById('stickyBar');
     if(window.scrollY > 600) { stickyBar.classList.add('show'); }
     else { stickyBar.classList.remove('show'); }
+  };
+
+  // 6. ÖZEL FARE İMLECİ
+  const dot = document.getElementById('cursorDot');
+  const outline = document.getElementById('cursorOutline');
+  document.addEventListener('mousemove', (e) => {
+    dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+    outline.style.left = e.clientX + 'px'; outline.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .case-card, .faq-question, .service-card').forEach(el => {
+    el.addEventListener('mouseenter', () => outline.classList.add('hover'));
+    el.addEventListener('mouseleave', () => outline.classList.remove('hover'));
+  });
+
+  // 3. DİL DEĞİŞTİRİCİ (SİMÜLASYON)
+  const langSwitch = document.getElementById('langSwitch');
+  let isEnglish = false;
+  langSwitch.addEventListener('click', () => {
+    isEnglish = !isEnglish;
+    langSwitch.textContent = isEnglish ? 'TR' : 'EN';
+    playClickSound();
+    
+    const translations = {
+      'hero-tag': isEnglish ? 'Boutique Software & Cybersecurity' : 'Butik Yazılım & Siber Güvenlik',
+      'hero-h1': isEnglish ? 'Secure, scalable and future-ready software solutions for your business.' : 'İşletmeniz için güvenli, ölçeklenebilir ve geleceğe hazır yazılım çözümleri.',
+      'hero-p': isEnglish ? 'We don\'t just write code; we analyze your business processes, secure your digital infrastructure, and build systems to increase operational efficiency.' : 'Sadece kod yazmıyoruz; iş süreçlerinizi analiz ediyor, dijital altyapınızı güvenli hale getiriyor ve operasyonel verimliliğinizi artıracak sistemler inşa ediyoruz.',
+      'hero-btn1': isEnglish ? 'Request a Quote' : 'Teklif Talep Edin',
+      'hero-btn2': isEnglish ? 'View Our Cases' : 'Vakaları İnceleyin',
+      'srv-title': isEnglish ? 'Our Expertise' : 'Uzmanlık Alanlarımız',
+      'founder-title': isEnglish ? 'Founder & Lead Software Engineer' : 'Kurucu & Baş Yazılım Mühendisi',
+      'founder-p': isEnglish ? 'BTK and IBM certified cybersecurity expert. For over 5 years, I have been delivering boutique solutions in enterprise software development and security.' : 'BTK ve IBM sertifikalı siber güvenlik uzmanı. 5 yılı aşkın süredir kurumsal yazılım geliştirme ve güvenlik alanında butik çözümler üretiyorum.',
+      'case-title': isEnglish ? 'Case Studies' : 'Vaka Analizleri',
+      'sss-title': isEnglish ? 'Frequently Asked Questions' : 'Sıkça Sorulan Sorular',
+      'pkg-title': isEnglish ? 'Working Packages' : 'Çalışma Paketlerimiz',
+      'contact-title': isEnglish ? 'Let\'s Discuss Your Project' : 'Projenizi Konuşalım',
+      'form-btn': isEnglish ? 'Send Quote Request' : 'Teklif Talebi Gönder',
+      'calendar-btn': isEnglish ? 'Schedule 15-Min Call' : '15 Dakikalık Ön Görüşme Planla'
+    };
+
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      const key = el.getAttribute('data-lang');
+      if(translations[key]) { el.innerHTML = translations[key]; }
+    });
   });
 </script>
 
