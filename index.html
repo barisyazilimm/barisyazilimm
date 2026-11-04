@@ -25,7 +25,7 @@
     overflow-x:hidden;
   }
 
-  /* HAREKETLİ ARKA PLAN IZGARASI (Ağır abi efekti) */
+  /* HAREKETLİ ARKA PLAN IZGARASI */
   body::before {
     content: '';
     position: fixed;
@@ -40,6 +40,19 @@
   @keyframes gridMove {
     0% { transform: translateY(0); }
     100% { transform: translateY(30px); }
+  }
+
+  /* FAREYİ TAKİP EDEN IŞIK (MOUSE GLOW) */
+  #mouse-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    transition: opacity 0.3s;
   }
 
   /* NAV */
@@ -66,7 +79,7 @@
   .hero{
     min-height:95vh;display:flex;flex-direction:column;
     justify-content:center;align-items:center;text-align:center;
-    padding:9rem 6% 5rem;position:relative;
+    padding:9rem 6% 5rem;position:relative;z-index:1;
   }
   .badge{
     display:inline-flex;align-items:center;gap:.6rem;
@@ -103,6 +116,40 @@
     color:#fff;box-shadow:0 10px 30px rgba(59,130,246,0.4);
   }
   .btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(59,130,246,0.6)}
+
+  /* TEKNOLOJİ ŞERİDİ (AL BENİSİ) */
+  .tech-strip {
+    width: 100vw;
+    overflow: hidden;
+    background: rgba(13,19,31,0.5);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+    display: flex;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+  }
+  .tech-track {
+    display: flex;
+    animation: scroll 25s linear infinite;
+    gap: 3rem;
+    align-items: center;
+    padding-left: 3rem;
+  }
+  .tech-track span {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .tech-track span:hover { color: var(--accent2); }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
   /* SECTION */
   section{padding:6rem 6%;max-width:1200px;margin:0 auto;position:relative;z-index:1}
@@ -226,12 +273,15 @@
   /* FOOTER */
   footer{
     text-align:center;padding:3rem 6%;border-top:1px solid var(--border);
-    color:var(--muted);font-size:.9rem;margin-top:4rem;background:var(--bg);
+    color:var(--muted);font-size:.9rem;margin-top:4rem;background:var(--bg);position:relative;z-index:1;
   }
   footer .logo{font-size:1.2rem;margin-bottom:.5rem}
 </style>
 </head>
 <body>
+
+<!-- FARE IŞIĞI -->
+<div id="mouse-glow"></div>
 
 <nav>
   <div class="logo">Barış<span>.</span>Yazılım</div>
@@ -249,6 +299,15 @@
   <p>Web, mobil ve kurumsal yazılım geliştirme. Siber güvenlik odaklı, modern teknolojilerle hızlı ve ölçeklenebilir çözümler.</p>
   <a href="#iletisim" class="btn btn-primary">Projenizi Konuşalım</a>
 </header>
+
+<!-- KAYAN TEKNOLOJİ ŞERİDİ -->
+<div class="tech-strip">
+  <div class="tech-track">
+    <span>React</span><span>Next.js</span><span>Node.js</span><span>Python</span><span>Flutter</span><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>PostgreSQL</span><span>SIEM</span>
+    <!-- Kopyası (kesintisiz dönüş için) -->
+    <span>React</span><span>Next.js</span><span>Node.js</span><span>Python</span><span>Flutter</span><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>PostgreSQL</span><span>SIEM</span>
+  </div>
+</div>
 
 <section id="hizmetler">
   <div class="sec-title">
@@ -289,12 +348,13 @@
   </div>
 </section>
 
+<!-- SAYAÇLI İSTATİSTİKLER -->
 <section>
   <div class="stats">
-    <div><div class="num">9</div><div class="lbl">Sertifika</div></div>
-    <div><div class="num">3</div><div class="lbl">Kurum Onayı</div></div>
-    <div><div class="num">%100</div><div class="lbl">Şeffaf Süreç</div></div>
-    <div><div class="num">24s</div><div class="lbl">Teklif Yanıtı</div></div>
+    <div><div class="num" data-target="9">0</div><div class="lbl">Sertifika</div></div>
+    <div><div class="num" data-target="3">0</div><div class="lbl">Kurum Onayı</div></div>
+    <div><div class="num" data-target="100">0</div><div class="lbl">% Şeffaf Süreç</div></div>
+    <div><div class="num" data-target="24">0</div><div class="lbl">Saat Teklif Yanıtı</div></div>
   </div>
 </section>
 
@@ -327,21 +387,20 @@
   </div>
 </section>
 
-<!-- SERTİFİKALAR KISMI (SENİN İSİMLERİNE GÖRE) -->
+<!-- SERTİFİKALAR -->
 <section id="sertifikalar">
   <div class="sec-title">
     <h2>Sertifikalar</h2>
     <p>BTK, IBM ve Cisco onaylı 9 sertifika ile belgelenmiş siber güvenlik uzmanlığı</p>
   </div>
 
-  <!-- BTK -->
   <div class="cert-group">
     <div class="cert-group-title">
       <span class="cert-badge">BTK</span>
       <h3>Bilgi Teknolojileri ve İletişim Kurumu (6)</h3>
     </div>
     <div class="cert-grid">
-      <a class="cert-card" href="sertifikalar/Siber_Guvenliğe_Giriş_Sertifika (1) kopyası.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="sertifikalar/Siber_Güvenliğe_Giriş_Sertifika (1) kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🛡️</div>
         <h4>Siber Güvenliğe Giriş</h4>
         <p>BTK · 16.06.2026</p>
@@ -353,7 +412,7 @@
         <p>BTK · 15.06.2026</p>
         <span class="cert-open">Sertifikayı Gör →</span>
       </a>
-      <a class="cert-card" href="sertifikalar/Siber_Olay_Tespit_ve_Müdahale_Sertifika (1) kopyası.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="sertifikalar/Siber_Olay_Tespit_ve_Müdahale_Sertifika (1) kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🚨</div>
         <h4>Siber Olay Tespit ve Müdahale</h4>
         <p>BTK · 18.06.2026</p>
@@ -365,13 +424,13 @@
         <p>BTK · 02.09.2026</p>
         <span class="cert-open">Sertifikayı Gör →</span>
       </a>
-      <a class="cert-card" href="sertifikalar/Siber_Olaylara_Müdahale_Sertifika (1) kopyası.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="sertifikalar/Siber_Olaylara_Müdahale_Sertifika (1) kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🛠️</div>
         <h4>Siber Olaylara Müdahale</h4>
         <p>BTK · 03.09.2026</p>
         <span class="cert-open">Sertifikayı Gör →</span>
       </a>
-      <a class="cert-card" href="sertifikalar/Python_ile_Siber_Güvenlik_Uygulamaları_Sertifika (1) kopyası.pdf" target="_blank" rel="noopener">
+      <a class="cert-card" href="sertifikalar/Python_ile_Siber_Güvenlik_Uygulamaları_Sertifika (1) kopyası.pdf" target="_blank" rel="noopener">
         <div class="cert-icon">🐍</div>
         <h4>Python ile Siber Güvenlik Uygulamaları</h4>
         <p>BTK · 06.09.2026</p>
@@ -380,7 +439,6 @@
     </div>
   </div>
 
-  <!-- IBM -->
   <div class="cert-group">
     <div class="cert-group-title">
       <span class="cert-badge ibm">IBM</span>
@@ -402,7 +460,6 @@
     </div>
   </div>
 
-  <!-- Cisco -->
   <div class="cert-group">
     <div class="cert-group-title">
       <span class="cert-badge cisco">Cisco</span>
@@ -431,6 +488,50 @@
   <div class="logo">Barış<span>.</span>Yazılım</div>
   <p>© 2026 Barış Yazılım. Tüm hakları saklıdır.</p>
 </footer>
+
+<!-- JAVASCRIPT (Fare Işığı ve Sayaçlar İçin) -->
+<script>
+  // 1. FARE IŞIĞI TAKİBİ
+  const glow = document.getElementById('mouse-glow');
+  document.addEventListener('mousemove', (e) => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+
+  // 2. SAYAÇ ANİMASYONU
+  const counters = document.querySelectorAll('.num');
+  const speed = 100; // Animasyon hızı
+
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const inc = target / speed;
+
+        if (count < target) {
+          counter.innerText = Math.ceil(count + inc);
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  };
+
+  // Sayaçlar sadece ekrana geldiğinde çalışsın (Intersection Observer)
+  let observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        animateCounters();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(document.querySelector('.stats'));
+</script>
 
 </body>
 </html>
